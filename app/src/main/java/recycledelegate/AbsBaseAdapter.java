@@ -49,5 +49,9 @@ public abstract class AbsBaseAdapter extends RecyclerView.Adapter {
         mItems.add(item);
     }
 
+    public void setList(List list) {
+        mItems = list;
+    }
+
     protected abstract void init();
 }

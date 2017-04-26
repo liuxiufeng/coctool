@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="avatar"
+            type="com.shadow.coctool.avatar.model.Avatar" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        style="@style/defalut_card"
+        card_view:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:background="@drawable/btn_click_transfor_bg"
+            android:gravity="center"
+            android:padding="8dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/doctor" />
+
+                <TextView
+                    android:id="@+id/name_hint"
+                    style="@style/avatar_card_hint"
+                    android:layout_toRightOf="@+id/img_job"
+                    android:text="@string/avatar.name" />
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/avatar_card_text"
+                    android:layout_toRightOf="@+id/name_hint"
+                    android:text="@{avatar.name}" />
+
+                <TextView
+                    android:id="@+id/sex_hint"
+                    style="@style/avatar_card_hint"
+                    android:layout_below="@+id/name"
+                    android:layout_toRightOf="@+id/img_job"
+                    android:text="@string/avatar.sex" />
+
+                <TextView
+                    android:id="@+id/sex"
+                    style="@style/avatar_card_text"
+                    android:layout_below="@+id/name"
+                    android:layout_toRightOf="@+id/age_hint"
+                    android:text="@{avatar.sex}" />
+
+                <TextView
+                    android:id="@+id/age_hint"
+                    style="@style/avatar_card_hint"
+                    android:layout_below="@+id/sex"
+                    android:layout_toRightOf="@+id/img_job"
+                    android:text="@string/avatar.age" />
+
+                <TextView
+                    android:id="@+id/age"
+                    style="@style/avatar_card_text"
+                    android:layout_below="@+id/sex"
+                    android:layout_toRightOf="@+id/age_hint"
+                    android:text="@{Integer.toString(avatar.age)}" />
+
+                <TextView
+                    android:id="@+id/job_hint"
+                    style="@style/avatar_card_hint"
+                    android:layout_below="@+id/age"
+                    android:layout_toRightOf="@+id/img_job"
+                    android:text="@string/avatar.job" />
+
+                <TextView
+                    android:id="@+id/job"
+                    style="@style/avatar_card_text"
+                    android:layout_below="@+id/age"
+                    android:layout_toRightOf="@+id/job_hint"
+                    android:text="老中医" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

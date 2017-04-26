@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mv"
+            type="com.shadow.coctool.avatar.modelview.AvatarModelView" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <android.support.v7.widget.CardView
+                style="@style/defalut_card"
+                card_view:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="请输入姓名"
+                        android:maxLines="1"
+                        android:text="@={mv.avatar.name}" />
+
+                    <LinearLayout
+                        style="@style/avatar_status_layer"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="0dp"
+                            android:text="@string/avatar.sex" />
+
+                        <Spinner
+                            android:id="@+id/spn_sex"
+                            style="@style/avatar_status_text"
+                            android:layout_width="wrap_content"
+                            android:entries="@array/sex" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="32dp"
+                            android:text="@string/avatar.age" />
+
+                        <Spinner
+                            android:id="@+id/spn_age"
+                            style="@style/avatar_status_text"
+                            android:layout_width="wrap_content"
+                            android:entries="@array/age" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/avatar_status_layer"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="0dp"
+                            android:text="@string/avatar.str" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.str)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.dex" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.dex)}" />
+                        />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.con" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.con)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/avatar_status_layer"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="0dp"
+                            android:text="@string/avatar.pow" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.pow)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.app" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.app)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.int" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.inti)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/avatar_status_layer"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="0dp"
+                            android:text="@string/avatar.size" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.size)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.edu" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.edu)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.dmg.bonus" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{mv.avatar.dmgBounce}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/avatar_status_layer"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="0dp"
+                            android:text="@string/avatar.hp" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.hp)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.mp" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.mp)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.san" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.san)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/avatar_status_layer"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="0dp"
+                            android:text="@string/avatar.idea" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.idea)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.luk" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.luk)}" />
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:text="@string/avatar.know" />
+
+                        <TextView
+                            style="@style/avatar_status_text"
+                            android:text="@{Integer.toString(mv.avatar.know)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/avatar_status_layer"
+                        android:layout_gravity="center_horizontal">
+
+                        <TextView
+                            style="@style/avatar_status_hint"
+                            android:layout_marginStart="0dp"
+                            android:text="@string/avatar.job" />
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/jobs"
+                            />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="分配职业技能" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="分配兴趣技能" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{()->mv.save()}"
+                        android:text="保存" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </ScrollView>
+    </LinearLayout>
+</layout>

@@ -1,5 +1,6 @@
-package com.shadow.coctool.main.model;
+package com.shadow.coctool.main.modelview;
 
+import android.content.Context;
 import android.content.Intent;
 
 /**
@@ -7,11 +8,17 @@ import android.content.Intent;
  */
 
 public class IconMenu {
+    private Context mContext;
+
     private int resId;
 
     private Intent intent;
 
     private String text;
+
+    public IconMenu(Context context) {
+        mContext = context;
+    }
 
     public int getResId() {
         return resId;
@@ -35,5 +42,11 @@ public class IconMenu {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public void startByIntent() {
+        if (intent != null) {
+            mContext.startActivity(intent);
+        }
     }
 }

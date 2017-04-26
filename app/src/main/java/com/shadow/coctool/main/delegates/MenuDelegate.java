@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.shadow.coctool.R;
 import com.shadow.coctool.databinding.ItemMainMenuBinding;
-import com.shadow.coctool.main.model.IconMenu;
+import com.shadow.coctool.main.modelview.IconMenu;
 
 import recycledelegate.Delegate;
 
@@ -36,8 +36,8 @@ public class MenuDelegate implements Delegate {
 
     @Override
     public void bindView(Object item, RecyclerView.ViewHolder vh) {
-        IconMenu iconMenu = (IconMenu) item;
-        ViewHolder mVh = (ViewHolder) vh;
+        final IconMenu iconMenu = (IconMenu) item;
+        final ViewHolder mVh = (ViewHolder) vh;
         mVh.mBinding.setMenu(iconMenu);
     }
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="unknown.sex">不明</string>
+
+    <string name="avatar.name">姓名</string>
+    <string name="avatar.sex">性别</string>
+    <string name="avatar.job">职业</string>
+    <string name="avatar.str">力量</string>
+    <string name="avatar.con">体质</string>
+    <string name="avatar.size">体型</string>
+    <string name="avatar.dex">敏捷</string>
+    <string name="avatar.app">外貌</string>
+    <string name="avatar.int">智力</string>
+    <string name="avatar.pow">意志</string>
+    <string name="avatar.san">理智</string>
+    <string name="avatar.edu">教育</string>
+    <string name="avatar.luk">幸运</string>
+    <string name="avatar.age">年龄</string>
+    <string name="avatar.dmg.bonus">增伤</string>
+    <string name="avatar.hp">生命</string>
+    <string name="avatar.mov">移动</string>
+    <string name="avatar.mp">魔力</string>
+    <string name="avatar.idea">灵感</string>
+    <string name="avatar.know">知识</string>
+
+    <string name="job.doctor">医生</string>
+    <string name="job.engineer">工程师</string>
+    <string name="job.actor">演员</string>
+    <string name="job.professor">教授</string>
+    <string name="job.fanatic">狂信者</string>
+    <string name="job.wardroom">军官</string>
+    <string name="job.police">警察</string>
+    <string name="job.private.detective">侦探</string>
+</resources>
