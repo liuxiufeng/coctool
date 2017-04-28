@@ -54,8 +54,8 @@
 
                         <Spinner
                             android:id="@+id/spn_sex"
-                            style="@style/avatar_status_text"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:entries="@array/sex" />
 
                         <TextView
@@ -65,162 +65,154 @@
 
                         <Spinner
                             android:id="@+id/spn_age"
-                            style="@style/avatar_status_text"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:entries="@array/age" />
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        style="@style/avatar_status_layer"
-                        android:layout_gravity="center_horizontal">
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:stretchColumns="*"
+                        >
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:layout_marginStart="0dp"
-                            android:text="@string/avatar.str" />
+                        <TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.str)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.str" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.dex" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.str)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.dex)}" />
-                        />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.dex" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.con" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.dex)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.con)}" />
-                    </LinearLayout>
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.con" />
 
-                    <LinearLayout
-                        style="@style/avatar_status_layer"
-                        android:layout_gravity="center_horizontal">
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.con)}" />
+                        </TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:layout_marginStart="0dp"
-                            android:text="@string/avatar.pow" />
+                        <TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.pow)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.pow" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.app" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.pow)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.app)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.app" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.int" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.app)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.inti)}" />
-                    </LinearLayout>
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.int" />
 
-                    <LinearLayout
-                        style="@style/avatar_status_layer"
-                        android:layout_gravity="center_horizontal">
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.inti)}" />
+                        </TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:layout_marginStart="0dp"
-                            android:text="@string/avatar.size" />
+                        <TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.size)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.size" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.edu" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.size)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.edu)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.edu" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.dmg.bonus" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.edu)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{mv.avatar.dmgBounce}" />
-                    </LinearLayout>
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.dmg.bonus" />
 
-                    <LinearLayout
-                        style="@style/avatar_status_layer"
-                        android:layout_gravity="center_horizontal">
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{mv.avatar.dmgBounce}" />
+                        </TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:layout_marginStart="0dp"
-                            android:text="@string/avatar.hp" />
+                        <TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.hp)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.hp" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.mp" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.hp)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.mp)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.mp" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.san" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.mp)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.san)}" />
-                    </LinearLayout>
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.san" />
 
-                    <LinearLayout
-                        style="@style/avatar_status_layer"
-                        android:layout_gravity="center_horizontal">
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.san)}" />
+                        </TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:layout_marginStart="0dp"
-                            android:text="@string/avatar.idea" />
+                        <TableRow>
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.idea)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.idea" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.luk" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.idea)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.luk)}" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.luk" />
 
-                        <TextView
-                            style="@style/avatar_status_hint"
-                            android:text="@string/avatar.know" />
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.luk)}" />
 
-                        <TextView
-                            style="@style/avatar_status_text"
-                            android:text="@{Integer.toString(mv.avatar.know)}" />
-                    </LinearLayout>
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@string/avatar.know" />
+
+                            <TextView
+                                style="@style/avatar_status_text"
+                                android:text="@{Integer.toString(mv.avatar.know)}" />
+                        </TableRow>
+                    </TableLayout>
 
                     <LinearLayout
                         style="@style/avatar_status_layer"
@@ -234,8 +226,7 @@
                         <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/jobs"
-                            />
+                            android:entries="@array/jobs" />
 
                         <Button
                             android:layout_width="wrap_content"
