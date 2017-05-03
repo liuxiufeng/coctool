@@ -4,9 +4,11 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.android.databinding.library.baseAdapters.BR;
+import com.shadow.coctool.dice.Dice;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -14,7 +16,83 @@ import java.util.List;
  * COC7th 3rd Edition
  */
 
-public class Avatar extends BaseObservable implements Serializable{
+public class Avatar extends BaseObservable implements Serializable {
+    /**
+     * 力量
+     */
+    public static final String STRENGTH = "str";
+
+    /**
+     * 体质
+     */
+    public static final String CONSTITUTION = "con";
+
+    /**
+     * 体型
+     */
+    public static final String SIZE = "size";
+
+    /**
+     * 敏捷
+     */
+    public static final String DEXTERITY = "dex";
+
+    /**
+     * 外貌
+     */
+    public static final String APPEARANCE = "app";
+
+    /**
+     * 智力
+     */
+    public static final String INTELLIGENCE = "int";
+
+    /**
+     * 意志
+     */
+    public static final String POWER = "pow";
+
+    /**
+     * 理智
+     */
+    public static final String SANITY = "sanity";
+
+    /**
+     * 教育
+     */
+    public static final String EDUCATION = "edu";
+
+    /**
+     * 幸运
+     */
+    public static final String LUCKY = "luck";
+
+    /**
+     * 生命
+     */
+    public static final String HP = "hp";
+
+    /**
+     * 魔法值
+     */
+    public static final String MP = "mp";
+
+    /**
+     * 灵感
+     */
+    public static final String IDEA = "idea";
+
+    /**
+     * 知识
+     */
+    public static final String KNOWLEDGE = "know";
+
+    /**
+     * 年龄
+     */
+    public static final String AGE = "age";
+
+
     /**
      * 名字
      */
@@ -22,164 +100,38 @@ public class Avatar extends BaseObservable implements Serializable{
 
     private String sex;
 
-    private int baseStr;
-
-    /**
-     * 力量
-     */
-    private int str;
-
-    private int baseCon;
-
-    /**
-     * 体质
-     */
-    private int con;
-
-    private int baseSize;
-
-    /**
-     * 体型
-     */
-    private int size;
-
-    private int baseDex;
-
-    /**
-     * 敏捷
-     */
-    private int dex;
-
-    private int baseApp;
-
-    /**
-     * 外貌
-     */
-    private int app;
-
-    private int baseInti;
-
-    /**
-     * 智力
-     */
-    private int inti;
-
-    private int basePow;
-
-    /**
-     * 意志
-     */
-    private int pow;
-
-    /**
-     * 最大理智点
-     */
-    private int maxSan;
-
-    /**
-     * 理智点
-     */
-    private int san;
-
-    private int baseEdu;
-
-    /**
-     * 教育
-     */
-    private int edu;
-
-    private int baseLuk;
-
-    /**
-     * 幸运
-     */
-    private int luk;
-
-    /**
-     * 年龄
-     */
-    private int age;
-
-    /**
-     * 最大生命值
-     */
-    private int maxHp;
-
-    /**
-     * 当前生命值
-     */
-    private int hp;
-
-
-    /**
-     * 最大MP
-     */
-    private int maxMp;
-
-    /**
-     * MP
-     */
-    private int mp;
-
-    /**
-     * 灵感
-     */
-    private int idea;
-
-    /**
-     * 知识
-     */
-    private int know;
-
-    /**
-     * 增伤
-     */
-    private String dmgBounce;
-
-    private int jobSkillPoint;
-
-    private int intSkillPoint;
+    private Status mStatus;
 
     private Job job;
 
     private List<Skill> intSkillList;
 
-    public void cacFixed() {
-        maxSan = pow * 5;
-        maxHp = (con + size) / 2;
-        maxMp = pow;
-        setSan(maxSan);
-        setHp(maxHp);
-        setMp(maxMp);
-
-        setIdea(inti * 5);
-        setLuk(pow * 5);
-        setKnow(edu * 5);
-        setJobSkillPoint(edu * 20);
-        setIntSkillPoint(inti * 10);
-
-        cacDmgBounce();
+    public Avatar() {
+        mStatus = new Status();
     }
 
-    public void cacDmgBounce() {
-        int sum = str + size;
-        if (sum >= 2 && sum <= 12) {
-            setDmgBounce("-1d6");
-        } else if (sum > 12 && sum <= 16) {
-            setDmgBounce("-1d4");
-        } else if (sum > 16 && sum <= 24) {
-            setDmgBounce("0");
-        } else if (sum > 24 && sum <= 32) {
-            setDmgBounce("+1d4");
-        } else if (sum > 32 && sum <= 40) {
-            setDmgBounce("+1d6");
-        } else if (sum > 40 && sum <= 56) {
-            setDmgBounce("+2d6");
-        } else if (sum > 56 && sum <= 72) {
-            setDmgBounce("+3d6");
-        } else if (sum <= 88) {
-            setDmgBounce("+4d6");
-        }
+    public void create() {
+        //6面骰
+        Dice sixDice = new Dice(6);
+
+        //3d6
+        setStr(sixDice.roll(3));
+
+        setDex(sixDice.roll(3));
+
+        setCon(sixDice.roll(3));
+
+        setPow(sixDice.roll(3));
+
+        setApp(sixDice.roll(3));
+
+        //2d6+6
+        setInti(sixDice.roll(2) + 6);
+
+        setSize(sixDice.roll(2) + 6);
+
+        //2d3
+        setEdu(sixDice.roll(3) + 3);
     }
 
     @Bindable
@@ -194,242 +146,164 @@ public class Avatar extends BaseObservable implements Serializable{
 
     @Bindable
     public int getStr() {
-        return str;
+        return mStatus.get(STRENGTH);
     }
 
     public void setStr(int str) {
-        this.str = str;
+        mStatus.set(STRENGTH, str);
         notifyPropertyChanged(BR.str);
     }
 
     @Bindable
     public int getCon() {
-        return con;
+        return mStatus.get(CONSTITUTION);
     }
 
     public void setCon(int con) {
-        this.con = con;
+        mStatus.set(CONSTITUTION, con);
         notifyPropertyChanged(BR.con);
     }
 
     @Bindable
     public int getSize() {
-        return size;
+        return mStatus.get(SIZE);
     }
 
     public void setSize(int size) {
-        this.size = size;
+        mStatus.set(SIZE, size);
         notifyPropertyChanged(BR.size);
     }
 
     @Bindable
     public int getDex() {
-        return dex;
+        return mStatus.get(DEXTERITY);
     }
 
     public void setDex(int dex) {
-        this.dex = dex;
+        mStatus.set(DEXTERITY, dex);
         notifyPropertyChanged(BR.dex);
     }
 
     @Bindable
     public int getApp() {
-        return app;
+        return mStatus.get(APPEARANCE);
     }
 
+
     public void setApp(int app) {
-        this.app = app;
+        mStatus.set(APPEARANCE, app);
         notifyPropertyChanged(BR.app);
     }
 
     @Bindable
     public int getInti() {
-        return inti;
+        return mStatus.get(INTELLIGENCE);
     }
 
     public void setInti(int inti) {
-        this.inti = inti;
+        mStatus.set(INTELLIGENCE, inti);
         notifyPropertyChanged(BR.inti);
+        notifyPropertyChanged(BR.idea);
     }
 
     @Bindable
     public int getPow() {
-        return pow;
+        return mStatus.get(POWER);
     }
 
     public void setPow(int pow) {
-        this.pow = pow;
+        mStatus.set(POWER, pow);
         notifyPropertyChanged(BR.pow);
+        notifyPropertyChanged(BR.san);
+        notifyPropertyChanged(BR.luk);
+        notifyPropertyChanged(BR.mp);
     }
 
     @Bindable
     public int getSan() {
-        return san;
-    }
-
-    public void setSan(int san) {
-        this.san = san;
-        notifyPropertyChanged(BR.san);
+        return mStatus.get(POWER) * 5;
     }
 
     @Bindable
     public int getEdu() {
-        return edu;
+        return mStatus.get(EDUCATION);
     }
 
     public void setEdu(int edu) {
-        this.edu = edu;
+        mStatus.set(EDUCATION, edu);
         notifyPropertyChanged(BR.edu);
+        notifyPropertyChanged(BR.know);
     }
 
     @Bindable
     public int getLuk() {
-        return luk;
-    }
-
-    public void setLuk(int luk) {
-        this.luk = luk;
-        notifyPropertyChanged(BR.luk);
+        return mStatus.get(POWER) * 5;
     }
 
     @Bindable
     public int getAge() {
-        return age;
+        return mStatus.get(AGE);
     }
 
     public void setAge(int age) {
-        this.age = age;
+        mStatus.set(AGE, age);
         notifyPropertyChanged(BR.age);
     }
 
+    @Bindable
     public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
+        return (mStatus.get(CONSTITUTION) + mStatus.get(SIZE)) / 2;
     }
 
     @Bindable
     public String getDmgBounce() {
-        return dmgBounce;
+        int bounce = getStr() + getSize();
+        if (bounce >= 2 && bounce < 13) {
+            return "-1d6";
+        } else if (bounce >= 13 && bounce < 17) {
+            return "-1d4";
+        } else if (bounce >= 17 && bounce < 25) {
+            return "0";
+        } else if (bounce >= 25 && bounce < 33) {
+            return "+1d4";
+        } else if (bounce >= 33 && bounce < 41) {
+            return "+1d6";
+        } else if (bounce >= 41 && bounce < 57) {
+            return "+2d6";
+        } else if (bounce >= 57 && bounce < 73) {
+            return "+3d6";
+        } else {
+            return "+4d6";
+        }
     }
 
-    public void setDmgBounce(String dmgBounce) {
-        this.dmgBounce = dmgBounce;
-        notifyPropertyChanged(BR.dmgBounce);
-    }
-
-    public int getBaseStr() {
-        return baseStr;
-    }
-
-    public void setBaseStr(int baseStr) {
-        this.baseStr = baseStr;
-    }
-
-    public int getBaseCon() {
-        return baseCon;
-    }
-
-    public void setBaseCon(int baseCon) {
-        this.baseCon = baseCon;
-    }
-
-    public int getBaseSize() {
-        return baseSize;
-    }
-
-    public void setBaseSize(int baseSize) {
-        this.baseSize = baseSize;
-    }
-
-    public int getBaseDex() {
-        return baseDex;
-    }
-
-    public void setBaseDex(int baseDex) {
-        this.baseDex = baseDex;
-    }
-
-    public int getBaseApp() {
-        return baseApp;
-    }
-
-    public void setBaseApp(int baseApp) {
-        this.baseApp = baseApp;
-    }
-
-    public int getBaseInti() {
-        return baseInti;
-    }
-
-    public void setBaseInti(int baseInti) {
-        this.baseInti = baseInti;
-    }
-
-    public int getBasePow() {
-        return basePow;
-    }
-
-    public void setBasePow(int basePow) {
-        this.basePow = basePow;
-    }
-
-    public int getMaxSan() {
-        return maxSan;
-    }
-
-    public void setMaxSan(int maxSan) {
-        this.maxSan = maxSan;
-    }
-
-    public int getBaseEdu() {
-        return baseEdu;
-    }
-
-    public void setBaseEdu(int baseEdu) {
-        this.baseEdu = baseEdu;
-    }
-
-    public int getBaseLuk() {
-        return baseLuk;
-    }
-
-    public void setBaseLuk(int baseLuk) {
-        this.baseLuk = baseLuk;
-    }
-
+    @Bindable
     public int getIdea() {
-        return idea;
+        return mStatus.get(INTELLIGENCE) * 5;
     }
 
-    public void setIdea(int idea) {
-        this.idea = idea;
-    }
-
+    @Bindable
     public int getKnow() {
-        return know;
+        return mStatus.get(EDUCATION) * 5;
     }
 
-    public void setKnow(int know) {
-        this.know = know;
-    }
-
-    public int getMaxMp() {
-        return maxMp;
-    }
-
-    public void setMaxMp(int maxMp) {
-        this.maxMp = maxMp;
-    }
-
+    @Bindable
     public int getMp() {
-        return mp;
+        return mStatus.get(POWER);
     }
 
-    public void setMp(int mp) {
-        this.mp = mp;
+    public void addModifier(String id, Map modifier) {
+        mStatus.addModifier(id, modifier);
+        notifyPropertyChanged(BR._all);
+    }
+
+    public void removeModifier(String id) {
+        mStatus.removeModifier(id);
+        notifyPropertyChanged(BR._all);
+    }
+
+    public Map getModifier(String id) {
+        return mStatus.getModifier(id);
     }
 
     public String getSex() {
@@ -440,14 +314,6 @@ public class Avatar extends BaseObservable implements Serializable{
         this.sex = sex;
     }
 
-    public int getJobSkillPoint() {
-        return jobSkillPoint;
-    }
-
-    public int getIntSkillPoint() {
-        return intSkillPoint;
-    }
-
     public Job getJob() {
         return job;
     }
@@ -456,11 +322,4 @@ public class Avatar extends BaseObservable implements Serializable{
         this.job = job;
     }
 
-    public void setJobSkillPoint(int jobSkillPoint) {
-        this.jobSkillPoint = jobSkillPoint;
-    }
-
-    public void setIntSkillPoint(int intSkillPoint) {
-        this.intSkillPoint = intSkillPoint;
-    }
 }

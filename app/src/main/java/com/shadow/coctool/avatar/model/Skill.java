@@ -35,4 +35,8 @@ public class Skill {
     public void setPoint(int point) {
         this.point = point;
     }
+
+    public int getSkillLevel() {
+       return min + point;
+    }
 }

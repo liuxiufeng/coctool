@@ -1,19 +1,25 @@
 package com.shadow.coctool.avatar.modelview;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.DataBindingUtil;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.orhanobut.hawk.Hawk;
+import com.shadow.coctool.R;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
 import com.shadow.coctool.databinding.ActivityAvatarBinding;
-import com.shadow.coctool.dice.Dice;
+import com.shadow.coctool.databinding.DialogAgeModifierBinding;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lxf on 2017/4/25.
@@ -32,47 +38,19 @@ public class AvatarModelView extends BaseObservable {
 
     private int model;
 
+    private DialogAgeModifierModelView mDialogMV;
+
+    private AlertDialog mAgeDialog;
+
     public AvatarModelView(Activity activity, ActivityAvatarBinding binding) {
         mActivity = activity;
         mBinding = binding;
         binding.setMv(this);
     }
 
-
-
     private void newAvatar() {
         mAvatar = new Avatar();
-        //6面骰
-        Dice sixDice = new Dice(6);
-
-        //3d6
-        mAvatar.setBaseStr(sixDice.roll(3));
-        mAvatar.setStr(mAvatar.getBaseStr());
-
-        mAvatar.setBaseDex(sixDice.roll(3));
-        mAvatar.setDex(mAvatar.getBaseDex());
-
-        mAvatar.setBaseCon(sixDice.roll(3));
-        mAvatar.setCon(mAvatar.getBaseCon());
-
-        mAvatar.setBasePow(sixDice.roll(3));
-        mAvatar.setPow(mAvatar.getBasePow());
-
-        mAvatar.setBaseApp(sixDice.roll(3));
-        mAvatar.setApp(mAvatar.getBaseApp());
-
-        //2d6+6
-        mAvatar.setBaseInti(sixDice.roll(2) + 6);
-        mAvatar.setInti(mAvatar.getBaseInti());
-
-        mAvatar.setBaseSize(sixDice.roll(2) + 6);
-        mAvatar.setSize(mAvatar.getBaseSize());
-
-        //2d3
-        mAvatar.setBaseEdu(sixDice.roll(2) + 3);
-        mAvatar.setEdu(mAvatar.getBaseEdu());
-
-        mAvatar.cacFixed();
+        mAvatar.create();
 
         mBinding.spnSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -90,8 +68,32 @@ public class AvatarModelView extends BaseObservable {
         mBinding.spnAge.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int age = Integer.valueOf((String)parent.getSelectedItem());
+                int age = Integer.valueOf((String) parent.getSelectedItem());
+                Map modifier = mAvatar.getModifier(Avatar.AGE);
+                int edu = mAvatar.getEdu();
+                if (modifier != null) {
+                    edu = edu - (int) modifier.get(Avatar.EDUCATION);
+                }
+
+                int minAge = edu + 4;
+
+                if (age < minAge) {
+                    mBinding.spnAge.setSelection(minAge - 14);
+                    return;
+                }
                 mAvatar.setAge(age);
+
+                int eduBounce = (age - minAge) / 10;
+                mDialogMV.clear();
+                mDialogMV.setEdu(eduBounce);
+
+                if (age > 50) {
+                    int points = (age - 40) / 10;
+                    mDialogMV.setPoints(points);
+                    mAgeDialog.show();
+                } else {
+                    mAvatar.addModifier(Avatar.EDUCATION, mDialogMV.getModifier());
+                }
             }
 
             @Override
@@ -99,6 +101,26 @@ public class AvatarModelView extends BaseObservable {
 
             }
         });
+    }
+
+    private void createAgeModifierDialog() {
+        View dialogView = LayoutInflater.from(mActivity).inflate(R.layout.dialog_age_modifier, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        DialogAgeModifierBinding binding = DataBindingUtil.bind(dialogView);
+
+        mDialogMV = new DialogAgeModifierModelView(mActivity, binding);
+
+        builder.setView(dialogView)
+                .setCancelable(false)
+                .setPositiveButton("确认",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        mAvatar.addModifier(Avatar.EDUCATION, mDialogMV.getModifier());
+                    }
+                });
+
+        mAgeDialog = builder.create();
     }
 
     public Avatar getAvatar() {
@@ -118,6 +140,7 @@ public class AvatarModelView extends BaseObservable {
         this.model = model;
         notifyPropertyChanged(BR.model);
         if (model == AvatarModelView.MODEL_NEW) {
+            createAgeModifierDialog();
             newAvatar();
         }
     }
