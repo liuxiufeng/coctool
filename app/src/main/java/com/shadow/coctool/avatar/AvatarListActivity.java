@@ -22,7 +22,7 @@ public class AvatarListActivity extends Activity {
 
         ActivityAvatarListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_avatar_list);
         mv = new AvatarListModelView(this, binding);
-        Utils.replaceReturnTitleFragment(this, "人物卡片", ()->{
+        Utils.replaceReturnTitleFragment(this, "探索者卡片", ()->{
             AvatarActivity.Run(this);
         });
     }

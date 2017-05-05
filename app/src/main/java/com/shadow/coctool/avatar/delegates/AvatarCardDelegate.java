@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.orhanobut.hawk.Hawk;
 import com.shadow.coctool.R;
+import com.shadow.coctool.avatar.AvatarViewActivity;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
 import com.shadow.coctool.databinding.ItemAvatarCardBinding;
@@ -83,7 +84,7 @@ public class AvatarCardDelegate implements Delegate {
     }
 
     private void check(Avatar avatar)  {
-
+        AvatarViewActivity.Run(mContext, avatar);
     }
 
     private void select(Avatar avatar) {

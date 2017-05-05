@@ -45,7 +45,8 @@ public class DelegateManager {
         delegate.bindView(item, vh);
     }
 
-    public void add(Delegate delegate) {
+    public DelegateManager add(Delegate delegate) {
         mDelegateList.add(delegate);
+        return this;
     }
 }

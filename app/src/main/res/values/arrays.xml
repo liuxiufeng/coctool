@@ -88,6 +88,10 @@
 
     <string-array name="jobs">
         <item>@string/job.doctor</item>
-        <item>@string/job.private.detective</item>
     </string-array>
+
+    <array name="jobs_id">
+        <item>@string/occupation.doctorOfMedicine</item>
+    </array>
+
 </resources>

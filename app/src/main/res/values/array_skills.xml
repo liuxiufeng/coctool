@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="all_skill">
+        <item>@string/skill.param.biology</item>
+        <item>@string/skill.param.creditRating</item>
+        <item>@string/skill.param.firstAid</item>
+        <item>@string/skill.param.latin</item>
+        <item>@string/skill.param.medicine</item>
+        <item>@string/skill.param.pharmacy</item>
+        <item>@string/skill.param.psychoanalysis</item>
+        <item>@string/skill.param.psychology</item>
+    </array>
+
+    <string-array name="free_skill">
+        <item></item>
+        <item>@string/skill.medicine</item>
+        <item>@string/skill.psychology</item>
+    </string-array>
+</resources>

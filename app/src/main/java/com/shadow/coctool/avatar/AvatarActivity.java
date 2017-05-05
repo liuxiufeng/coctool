@@ -7,6 +7,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.shadow.coctool.R;
+import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.avatar.modelview.AvatarModelView;
 import com.shadow.coctool.common.Utils;
 import com.shadow.coctool.databinding.ActivityAvatarBinding;
@@ -18,13 +19,11 @@ import com.shadow.coctool.databinding.ActivityAvatarBinding;
 public class AvatarActivity extends Activity {
     public static final String KEY_AVATAR= "avatar";
 
-    public static final String KEY_MODEL = "model";
 
-
+    private AvatarModelView mv;
 
     public static void Run(Context context) {
         Intent intent = new Intent(context, AvatarActivity.class);
-        intent.putExtra(KEY_MODEL, AvatarModelView.MODEL_NEW);
         context.startActivity(intent);
     }
 
@@ -33,8 +32,16 @@ public class AvatarActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         ActivityAvatarBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_avatar);
-        AvatarModelView mv = new AvatarModelView(this, binding);
-        mv.setModel(getIntent().getIntExtra(KEY_MODEL, 0));
-        Utils.replaceReturnTitleFragment(this, "人物");
+        mv = new AvatarModelView(this, binding);
+        Utils.replaceReturnTitleFragment(this, "探索者");
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            Avatar avatar = (Avatar) data.getSerializableExtra(KEY_AVATAR);
+            mv.setAvatar(avatar);
+        }
     }
 }

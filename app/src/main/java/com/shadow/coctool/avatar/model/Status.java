@@ -1,5 +1,6 @@
 package com.shadow.coctool.avatar.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -8,11 +9,11 @@ import java.util.Set;
  * Created by lxf on 2017/5/3.
  */
 
-public class Status {
+public class Status implements Serializable {
 
     Map<String, Integer> baseStatus;
 
-    Map<String, Map> modifiers;
+    Map<String, Map<String, Integer>> modifiers;
 
     public Status() {
         baseStatus = new HashMap<>();

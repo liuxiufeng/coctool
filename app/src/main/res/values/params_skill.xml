@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="skill.param.medicine">{"name":"医学", "min":5}</string>
+    <string name="skill.param.firstAid">{"name":"急救", "min":30}</string>
+    <string name="skill.param.creditRating">{"name":"信誉度", "min":15}</string>
+    <string name="skill.param.psychology">{"name":"心理学", "min":5}</string>
+    <string name="skill.param.psychoanalysis">{"name":"心理分析", "min":1}</string>
+    <string name="skill.param.biology">{"name":"生物学", "min":1}</string>
+    <string name="skill.param.latin">{"name":"拉丁语", "min":1}</string>
+    <string name="skill.param.pharmacy">{"name":"药剂学", "min":1}</string>
+</resources>

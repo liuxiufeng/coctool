@@ -1,9 +1,15 @@
 package com.shadow.coctool.avatar.model;
 
+import android.content.Context;
+import android.content.res.TypedArray;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.android.databinding.library.baseAdapters.BR;
+import com.google.gson.JsonObject;
+import com.shadow.coctool.COCToolApplication;
+import com.shadow.coctool.R;
+import com.shadow.coctool.common.Utils;
 import com.shadow.coctool.dice.Dice;
 
 import java.io.Serializable;
@@ -13,7 +19,7 @@ import java.util.Map;
 
 /**
  * Created by lxf on 2017/4/20.
- * COC7th 3rd Edition
+ * COC6th Edition
  */
 
 public class Avatar extends BaseObservable implements Serializable {
@@ -104,7 +110,7 @@ public class Avatar extends BaseObservable implements Serializable {
 
     private Job job;
 
-    private List<Skill> intSkillList;
+    private List<String> freeSkillList;
 
     public Avatar() {
         mStatus = new Status();
@@ -132,6 +138,17 @@ public class Avatar extends BaseObservable implements Serializable {
 
         //2d3
         setEdu(sixDice.roll(3) + 3);
+
+        createSkillMap();
+    }
+
+    private void createSkillMap() {
+        Context context = COCToolApplication.getContext();
+        TypedArray idArr = context.getResources().obtainTypedArray(R.array.all_skill);
+        for (int i = 0; i < idArr.length(); i++) {
+            JsonObject skill = Utils.skillBuilder(idArr.getResourceId(i,0));
+            mStatus.set(skill.get("name").getAsString(), skill.get("min").getAsInt());
+        }
     }
 
     @Bindable
@@ -292,6 +309,15 @@ public class Avatar extends BaseObservable implements Serializable {
         return mStatus.get(POWER);
     }
 
+    @Bindable
+    public int getJobSkillPoint() {
+        return mStatus.get(EDUCATION) * 20;
+    }
+
+    public int getFreeSkillPoint() {
+        return mStatus.get(INTELLIGENCE) * 10;
+    }
+
     public void addModifier(String id, Map modifier) {
         mStatus.addModifier(id, modifier);
         notifyPropertyChanged(BR._all);
@@ -322,4 +348,15 @@ public class Avatar extends BaseObservable implements Serializable {
         this.job = job;
     }
 
+    public int getSkill(String id) {
+        return mStatus.get(id);
+    }
+
+    public List<String> getFreeSkillList() {
+        return freeSkillList;
+    }
+
+    public void setFreeSkillList(List<String> freeSkillList) {
+        this.freeSkillList = freeSkillList;
+    }
 }

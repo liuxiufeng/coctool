@@ -3,18 +3,22 @@ package com.shadow.coctool.avatar.modelview;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.orhanobut.hawk.Hawk;
 import com.shadow.coctool.R;
+import com.shadow.coctool.avatar.SkillActivity;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
+import com.shadow.coctool.common.Utils;
 import com.shadow.coctool.databinding.ActivityAvatarBinding;
 import com.shadow.coctool.databinding.DialogAgeModifierBinding;
 
@@ -26,17 +30,14 @@ import java.util.Map;
  */
 
 public class AvatarModelView extends BaseObservable {
-    public static final int MODEL_NEW = 0;
 
-    public static final int MODEL_VIEW = 1;
+    public static final int REQUEST_SKILL = 101;
 
     private Activity mActivity;
 
     private ActivityAvatarBinding mBinding;
 
     private Avatar mAvatar;
-
-    private int model;
 
     private DialogAgeModifierModelView mDialogMV;
 
@@ -46,6 +47,9 @@ public class AvatarModelView extends BaseObservable {
         mActivity = activity;
         mBinding = binding;
         binding.setMv(this);
+
+        createAgeModifierDialog();
+        newAvatar();
     }
 
     private void newAvatar() {
@@ -101,6 +105,20 @@ public class AvatarModelView extends BaseObservable {
 
             }
         });
+
+        mBinding.spnJob.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                TypedArray idArr = mActivity.getResources().obtainTypedArray(R.array.jobs_id);
+                mAvatar.setJob(Utils.jobBuilder(idArr.getResourceId(position, 0)));
+                mAvatar.removeModifier(Avatar.EDUCATION);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void createAgeModifierDialog() {
@@ -113,42 +131,38 @@ public class AvatarModelView extends BaseObservable {
         builder.setView(dialogView)
                 .setCancelable(false)
                 .setPositiveButton("确认",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        mAvatar.addModifier(Avatar.EDUCATION, mDialogMV.getModifier());
-                    }
-                });
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                mAvatar.addModifier(Avatar.EDUCATION, mDialogMV.getModifier());
+                            }
+                        });
 
         mAgeDialog = builder.create();
     }
 
+    @Bindable
     public Avatar getAvatar() {
         return mAvatar;
     }
 
     public void setAvatar(Avatar mAvatar) {
         this.mAvatar = mAvatar;
-    }
-
-    @Bindable
-    public int getModel() {
-        return model;
-    }
-
-    public void setModel(int model) {
-        this.model = model;
-        notifyPropertyChanged(BR.model);
-        if (model == AvatarModelView.MODEL_NEW) {
-            createAgeModifierDialog();
-            newAvatar();
-        }
+        notifyPropertyChanged(BR.avatar);
     }
 
     public void save() {
+        if (mAvatar.getName() == null || mAvatar.getName().equals("")) {
+            Toast.makeText(mActivity, "请输入姓名", Toast.LENGTH_SHORT).show();
+            return;
+        }
         List list = Hawk.get(HawkKey.KEY_AVATAR_LIST);
         list.add(mAvatar);
         Hawk.put(HawkKey.KEY_AVATAR_LIST, list);
         mActivity.finish();
+    }
+
+    public void startSkillActivity(int model) {
+        SkillActivity.run(mActivity, mAvatar, model, REQUEST_SKILL);
     }
 }

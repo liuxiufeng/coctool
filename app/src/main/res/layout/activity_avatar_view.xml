@@ -6,7 +6,7 @@
 
         <variable
             name="mv"
-            type="com.shadow.coctool.avatar.modelview.AvatarModelView" />
+            type="com.shadow.coctool.avatar.modelview.AvatarViewModelView" />
     </data>
 
     <LinearLayout
@@ -19,14 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp">
+        <android.support.v7.widget.CardView
+            style="@style/defalut_card"
+            card_view:cardCornerRadius="4dp">
 
-            <android.support.v7.widget.CardView
-                style="@style/defalut_card"
-                card_view:cardCornerRadius="4dp">
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="fill_vertical"
+                android:padding="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -35,13 +36,12 @@
                     android:focusableInTouchMode="true"
                     android:orientation="vertical">
 
-                    <EditText
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:hint="请输入姓名"
                         android:maxLines="1"
-                        android:text="@={mv.avatar.name}" />
+                        android:text="@{mv.avatar.name}" />
 
                     <LinearLayout
                         style="@style/avatar_status_layer"
@@ -52,22 +52,20 @@
                             android:layout_marginStart="0dp"
                             android:text="@string/avatar.sex" />
 
-                        <Spinner
-                            android:id="@+id/spn_sex"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/sex" />
+                            android:text="@{mv.avatar.sex}" />
 
                         <TextView
                             style="@style/avatar_status_hint"
                             android:layout_marginStart="32dp"
                             android:text="@string/avatar.age" />
 
-                        <Spinner
-                            android:id="@+id/spn_age"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/age" />
+                            android:text="@{Integer.toString(mv.avatar.age)}" />
 
                     </LinearLayout>
 
@@ -75,8 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:stretchColumns="*"
-                        >
+                        android:stretchColumns="*">
 
                         <TableRow>
 
@@ -215,43 +212,40 @@
                     </TableLayout>
 
                     <LinearLayout
-                        style="@style/avatar_status_layer"
-                        android:layout_gravity="center_horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp">
 
                         <TextView
-                            style="@style/avatar_status_hint"
-                            android:layout_marginStart="0dp"
-                            android:text="@string/avatar.job" />
-
-                        <Spinner
-                            android:id="@+id/spnJob"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/jobs" />
+                            android:text="@string/avatar.job" />
 
-                        <Button
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:onClick="@{()-> mv.startSkillActivity(1)}"
-                            android:text="分配职业技能" />
-
+                            android:text="@{mv.avatar.job.name}" />
                     </LinearLayout>
 
-                    <Button
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/jobSkillList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:onClick="@{()-> mv.startSkillActivity(2)}"
-                        android:text="分配兴趣技能" />
+                        android:layout_marginStart="8dp"
+                        android:text="兴趣技能" />
 
-                    <Button
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/freeSkillList"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{()->mv.save()}"
-                        android:text="保存" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </ScrollView>
+
+            </android.support.v4.widget.NestedScrollView>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 </layout>

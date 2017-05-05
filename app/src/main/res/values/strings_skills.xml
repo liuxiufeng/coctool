@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="skill.medicine">医学</string>
+    <string name="skill.psychology">心理学</string>
+</resources>

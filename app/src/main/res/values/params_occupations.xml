@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="occupation.doctorOfMedicine">{"name":"医生","skillList":["医学", "急救", "信誉度","心理学","心理分析", "生物学","拉丁语", "药剂学"]}</string>
+</resources>

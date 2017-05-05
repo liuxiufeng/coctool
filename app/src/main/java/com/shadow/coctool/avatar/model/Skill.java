@@ -1,16 +1,22 @@
 package com.shadow.coctool.avatar.model;
 
+import java.io.Serializable;
+
 /**
  * Created by lxf on 2017/4/26.
  */
 
-public class Skill {
+public class Skill implements Serializable, Cloneable {
 
     private String name;
 
     private int min;
 
     private int point;
+
+    public Skill() {
+
+    }
 
     public String getName() {
         return name;
@@ -38,5 +44,11 @@ public class Skill {
 
     public int getSkillLevel() {
        return min + point;
+    }
+
+    @Override
+    public Skill clone() throws CloneNotSupportedException {
+        Skill skill = (Skill) super.clone();
+        return skill ;
     }
 }

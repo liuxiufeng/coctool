@@ -38,7 +38,7 @@ public class MainModelView {
     private void initMenu() {
         mIconMenuAdapter = new IconMenuAdapter(mActivity);
 
-        addMenu(0, new Intent(mActivity, AvatarListActivity.class), "人物卡片");
+        addMenu(0, new Intent(mActivity, AvatarListActivity.class), "探索者卡片");
         addMenu(0, null, "骰子");
         addMenu(0, null, "跑团");
 

@@ -33,7 +33,8 @@ public class AvatarListModelView {
         mActivity = activity;
         mBinding = binding;
 
-        mAdapter = new AvatarCardAdapter(mActivity); mBinding.list.setLayoutManager(new LinearLayoutManager(mActivity));
+        mAdapter = new AvatarCardAdapter(mActivity);
+        mBinding.list.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.list.setAdapter(mAdapter);
     }
 
