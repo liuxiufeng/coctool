@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.databinding.ActivityMainBinding;
+import com.shadow.coctool.dice.DicesActivity;
 import com.shadow.coctool.main.adapters.IconMenuAdapter;
 
 /**
@@ -39,7 +40,7 @@ public class MainModelView {
         mIconMenuAdapter = new IconMenuAdapter(mActivity);
 
         addMenu(0, new Intent(mActivity, AvatarListActivity.class), "探索者卡片");
-        addMenu(0, null, "骰子");
+        addMenu(0, new Intent(mActivity, DicesActivity.class), "工具");
         addMenu(0, null, "跑团");
 
         mBinding.grid.setAdapter(mIconMenuAdapter);

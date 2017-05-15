@@ -8,7 +8,4 @@ public class HawkKey {
     public static final String KEY_AVATAR_LIST = "avatar_list";
 
     public static final String KEY_SELECTED_AVATAR = "selected_avatar";
-
-    public static final String KEY_TEMP_AVATAR = "temp_avatar";
-
 }

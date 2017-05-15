@@ -28,6 +28,8 @@
 
         <activity android:name=".avatar.AvatarViewActivity"/>
 
+        <activity android:name=".dice.DicesActivity"/>
+
     </application>
 
 </manifest>
