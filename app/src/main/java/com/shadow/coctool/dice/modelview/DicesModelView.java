@@ -46,10 +46,13 @@ public class DicesModelView extends BaseObservable {
     private void initSkillAdapter() {
 
         List<String> jobSkill = mAvatar.getJob().getSkillList();
-        jobSkill.addAll(mAvatar.getJob().getFreeSkillList());
-        mBinding.spnJobSkill.setAdapter(createArrayAdapter(jobSkill));
-
-        mBinding.spnFree.setAdapter(createArrayAdapter(mAvatar.getFreeSkillList()));
+        if(mAvatar.getJob().getFreeSkillList() != null) {
+            jobSkill.addAll(mAvatar.getJob().getFreeSkillList());
+        }
+            mBinding.spnJobSkill.setAdapter(createArrayAdapter(jobSkill));
+        if (mAvatar.getFreeSkillList() != null) {
+            mBinding.spnFree.setAdapter(createArrayAdapter(mAvatar.getFreeSkillList()));
+        }
     }
 
     private ArrayAdapter createArrayAdapter(List array) {
@@ -97,8 +100,8 @@ public class DicesModelView extends BaseObservable {
     }
 
     public void nDmR() {
-        int faces = Integer.valueOf((String) mBinding.spnFaces.getSelectedItem());
-        int rolls = Integer.valueOf((String) mBinding.spnRolls.getSelectedItem());
+        int rolls = Integer.valueOf((String) mBinding.spnFaces.getSelectedItem());
+        int faces = Integer.valueOf((String) mBinding.spnRolls.getSelectedItem());
 
         Dice dice = new Dice(faces);
         int value = dice.roll(rolls);

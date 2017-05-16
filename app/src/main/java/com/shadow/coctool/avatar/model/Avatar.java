@@ -13,6 +13,7 @@ import com.shadow.coctool.common.Utils;
 import com.shadow.coctool.dice.Dice;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -140,6 +141,7 @@ public class Avatar extends BaseObservable implements Serializable {
         setEdu(sixDice.roll(3) + 3);
 
         createSkillMap();
+        statusBaseSkillModifier();
     }
 
     private void createSkillMap() {
@@ -149,6 +151,19 @@ public class Avatar extends BaseObservable implements Serializable {
             JsonObject skill = Utils.skillBuilder(idArr.getResourceId(i,0));
             mStatus.set(skill.get("name").getAsString(), skill.get("min").getAsInt());
         }
+    }
+
+    public void statusBaseSkillModifier() {
+        Map modifier = new HashMap<String, Integer>();
+        Context context = COCToolApplication.getContext();
+        modifier.put(context.getString(R.string.skill_dodge), getDex() * 2);
+        int ownLanguage = getEdu() * 5;
+        ownLanguage = ownLanguage > 95 ? 95 : ownLanguage;
+        modifier.put(context.getString(R.string.skill_ownLanguage), ownLanguage);
+        modifier.put(context.getString(R.string.skill_lucky), getLuk());
+        modifier.put(context.getString(R.string.skill_idea), getIdea());
+        modifier.put(context.getString(R.string.skill_knowledge), getKnow());
+        mStatus.addModifier("StatusBaseSkill", modifier);
     }
 
     @Bindable

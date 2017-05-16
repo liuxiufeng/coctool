@@ -135,6 +135,7 @@ public class AvatarModelView extends BaseObservable {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 mAvatar.addModifier(Avatar.EDUCATION, mDialogMV.getModifier());
+                                mAvatar.statusBaseSkillModifier();
                             }
                         });
 

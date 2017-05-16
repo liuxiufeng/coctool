@@ -1,19 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="all_skill">
+        <item>@string/skill.param.accounting</item>
+        <item>@string/skill.param.anthropology</item>
+        <item>@string/skill.param.archaeology</item>
+        <item>@string/skill.param.art</item>
+        <item>@string/skill.param.astronomy</item>
+        <item>@string/skill.param.bargain</item>
         <item>@string/skill.param.biology</item>
+        <item>@string/skill.param.chemistry</item>
+        <item>@string/skill.param.climb</item>
+        <item>@string/skill.param.conceal</item>
+        <item>@string/skill.param.craft</item>
         <item>@string/skill.param.creditRating</item>
+        <item>@string/skill.param.cthulhuMythos</item>
+        <item>@string/skill.param.disguise</item>
+        <item>@string/skill.param.dodge</item>
+        <item>@string/skill.param.driveAutomobile</item>
+        <item>@string/skill.param.electricalRepair</item>
+        <item>@string/skill.param.fastTalk</item>
         <item>@string/skill.param.firstAid</item>
-        <item>@string/skill.param.latin</item>
+        <item>@string/skill.param.fist</item>
+        <item>@string/skill.param.geology</item>
+        <item>@string/skill.param.grapple</item>
+        <item>@string/skill.param.handgun</item>
+        <item>@string/skill.param.headButt</item>
+        <item>@string/skill.param.hide</item>
+        <item>@string/skill.param.history</item>
+        <item>@string/skill.param.jump</item>
+        <item>@string/skill.param.kick</item>
+        <item>@string/skill.param.law</item>
+        <item>@string/skill.param.libraryUse</item>
+        <item>@string/skill.param.listen</item>
+        <item>@string/skill.param.locksmith</item>
+        <item>@string/skill.param.machineGun</item>
+        <item>@string/skill.param.martialArts</item>
+        <item>@string/skill.param.mechanicalRepair</item>
         <item>@string/skill.param.medicine</item>
+        <item>@string/skill.param.naturalHistory</item>
+        <item>@string/skill.param.navigate</item>
+        <item>@string/skill.param.occult</item>
+        <item>@string/skill.param.operateHeavyMachine</item>
+        <item>@string/skill.param.otherLanguage</item>
+        <item>@string/skill.param.ownLanguage</item>
+        <item>@string/skill.param.persuade</item>
         <item>@string/skill.param.pharmacy</item>
+        <item>@string/skill.param.photography</item>
+        <item>@string/skill.param.physics</item>
+        <item>@string/skill.param.pilot</item>
         <item>@string/skill.param.psychoanalysis</item>
         <item>@string/skill.param.psychology</item>
+        <item>@string/skill.param.ride</item>
+        <item>@string/skill.param.rifle</item>
+        <item>@string/skill.param.shotgun</item>
+        <item>@string/skill.param.sneak</item>
+        <item>@string/skill.param.spotHidden</item>
+        <item>@string/skill.param.subMachineGun</item>
+        <item>@string/skill.param.swim</item>
+        <item>@string/skill.param.throw</item>
+        <item>@string/skill.param.track</item>
+        <item>@string/skill.param.meleeWeapon</item>
+        <item>@string/skill.param.latin</item>
+        <item>@string/skill.param.lucky</item>
+        <item>@string/skill.param.idea</item>
+        <item>@string/skill.param.knowledge</item>
     </array>
+
 
     <string-array name="free_skill">
         <item></item>
+        <item>@string/skill.accounting</item>
+        <item>@string/skill.anthropology</item>
+        <item>@string/skill.archaeology</item>
+        <item>@string/skill.art</item>
+        <item>@string/skill.astronomy</item>
+        <item>@string/skill.bargain</item>
+        <item>@string/skill.biology</item>
+        <item>@string/skill.chemistry</item>
+        <item>@string/skill.climb</item>
+        <item>@string/skill.conceal</item>
+        <item>@string/skill.craft</item>
+        <item>@string/skill.creditRating</item>
+        <item>@string/skill.cthulhuMythos</item>
+        <item>@string/skill.disguise</item>
+        <item>@string/skill.dodge</item>
+        <item>@string/skill.driveAutomobile</item>
+        <item>@string/skill.electricalRepair</item>
+        <item>@string/skill.fastTalk</item>
+        <item>@string/skill.firstAid</item>
+        <item>@string/skill.fist</item>
+        <item>@string/skill.geology</item>
+        <item>@string/skill.grapple</item>
+        <item>@string/skill.handgun</item>
+        <item>@string/skill.headButt</item>
+        <item>@string/skill.hide</item>
+        <item>@string/skill.history</item>
+        <item>@string/skill.jump</item>
+        <item>@string/skill.kick</item>
+        <item>@string/skill.law</item>
+        <item>@string/skill.libraryUse</item>
+        <item>@string/skill.listen</item>
+        <item>@string/skill.locksmith</item>
+        <item>@string/skill.machineGun</item>
+        <item>@string/skill.martialArts</item>
+        <item>@string/skill.mechanicalRepair</item>
         <item>@string/skill.medicine</item>
+        <item>@string/skill.naturalHistory</item>
+        <item>@string/skill.navigate</item>
+        <item>@string/skill.occult</item>
+        <item>@string/skill.operateHeavyMachine</item>
+        <item>@string/skill.otherLanguage</item>
+        <item>@string/skill.ownLanguage</item>
+        <item>@string/skill.persuade</item>
+        <item>@string/skill.pharmacy</item>
+        <item>@string/skill.photography</item>
+        <item>@string/skill.physics</item>
+        <item>@string/skill.pilot</item>
+        <item>@string/skill.psychoanalysis</item>
         <item>@string/skill.psychology</item>
+        <item>@string/skill.ride</item>
+        <item>@string/skill.rifle</item>
+        <item>@string/skill.shotgun</item>
+        <item>@string/skill.sneak</item>
+        <item>@string/skill.spotHidden</item>
+        <item>@string/skill.subMachineGun</item>
+        <item>@string/skill.swim</item>
+        <item>@string/skill.throw</item>
+        <item>@string/skill.track</item>
+        <item>@string/skill.meleeWeapon</item>
+        <item>@string/skill.latin</item>
+    </string-array>
+
+    <string-array name="skill_all">
+        <item></item>
+        <item>@string/skill.accounting</item>
+        <item>@string/skill.anthropology</item>
+        <item>@string/skill.archaeology</item>
+        <item>@string/skill.art</item>
+        <item>@string/skill.astronomy</item>
+        <item>@string/skill.bargain</item>
+        <item>@string/skill.biology</item>
+        <item>@string/skill.chemistry</item>
+        <item>@string/skill.climb</item>
+        <item>@string/skill.conceal</item>
+        <item>@string/skill.craft</item>
+        <item>@string/skill.creditRating</item>
+        <item>@string/skill.cthulhuMythos</item>
+        <item>@string/skill.disguise</item>
+        <item>@string/skill.dodge</item>
+        <item>@string/skill.driveAutomobile</item>
+        <item>@string/skill.electricalRepair</item>
+        <item>@string/skill.fastTalk</item>
+        <item>@string/skill.firstAid</item>
+        <item>@string/skill.fist</item>
+        <item>@string/skill.geology</item>
+        <item>@string/skill.grapple</item>
+        <item>@string/skill.handgun</item>
+        <item>@string/skill.headButt</item>
+        <item>@string/skill.hide</item>
+        <item>@string/skill.history</item>
+        <item>@string/skill.jump</item>
+        <item>@string/skill.kick</item>
+        <item>@string/skill.law</item>
+        <item>@string/skill.libraryUse</item>
+        <item>@string/skill.listen</item>
+        <item>@string/skill.locksmith</item>
+        <item>@string/skill.machineGun</item>
+        <item>@string/skill.martialArts</item>
+        <item>@string/skill.mechanicalRepair</item>
+        <item>@string/skill.medicine</item>
+        <item>@string/skill.naturalHistory</item>
+        <item>@string/skill.navigate</item>
+        <item>@string/skill.occult</item>
+        <item>@string/skill.operateHeavyMachine</item>
+        <item>@string/skill.otherLanguage</item>
+        <item>@string/skill.ownLanguage</item>
+        <item>@string/skill.persuade</item>
+        <item>@string/skill.pharmacy</item>
+        <item>@string/skill.photography</item>
+        <item>@string/skill.physics</item>
+        <item>@string/skill.pilot</item>
+        <item>@string/skill.psychoanalysis</item>
+        <item>@string/skill.psychology</item>
+        <item>@string/skill.ride</item>
+        <item>@string/skill.rifle</item>
+        <item>@string/skill.shotgun</item>
+        <item>@string/skill.sneak</item>
+        <item>@string/skill.spotHidden</item>
+        <item>@string/skill.subMachineGun</item>
+        <item>@string/skill.swim</item>
+        <item>@string/skill.throw</item>
+        <item>@string/skill.track</item>
+        <item>@string/skill.meleeWeapon</item>
+        <item>@string/skill.latin</item>
+        <item>@string/skill.lucky</item>
+        <item>@string/skill.idea</item>
+        <item>@string/skill.knowledge</item>
+    </string-array>
+
+    <string-array name="common_use_skill">
+        <item>@string/skill.lucky</item>
+        <item>@string/skill.idea</item>
+        <item>@string/skill.knowledge</item>
+        <item>@string/skill.dodge</item>
+        <item>@string/skill.ownLanguage</item>
+        <item>@string/skill.listen</item>
+        <item>@string/skill.spotHidden</item>
+        <item>@string/skill.libraryUse</item>
+        <item>@string/skill.firstAid</item>
+        <item>@string/skill.throw</item>
     </string-array>
 </resources>

@@ -31,7 +31,7 @@
     <string name="skill.param.law">{"name":"法律", "min":5}</string>
     <string name="skill.param.libraryUse">{"name":"图书馆使用", "min":25}</string>
     <string name="skill.param.listen">{"name":"聆听", "min":25}</string>
-    <string name="skill.param.locksmith">{"name":"锁匠", "min":1}</string>
+    <string name="skill.param.locksmith">{"name":"开锁", "min":1}</string>
     <string name="skill.param.machineGun">{"name":"机关枪", "min":25}</string>
     <string name="skill.param.martialArts">{"name":"武术", "min":1}</string>
     <string name="skill.param.mechanicalRepair">{"name":"机械修理", "min":20}</string>
@@ -60,4 +60,7 @@
     <string name="skill.param.track">{"name":"追踪", "min":10}</string>
     <string name="skill.param.meleeWeapon">{"name":"近战武器", "min":25}</string>
     <string name="skill.param.latin">{"name":"拉丁语", "min":1}</string>
+    <string name="skill.param.lucky">{"name":"幸运", "min":0}</string>
+    <string name="skill.param.idea">{"name":"灵感", "min":0}</string>
+    <string name="skill.param.knowledge">{"name":"知识", "min":0}</string>
 </resources>

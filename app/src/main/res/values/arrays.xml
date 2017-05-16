@@ -145,11 +145,57 @@
     </string-array>
 
     <string-array name="jobs">
-        <item>@string/job.doctor</item>
+        <item>@string/job.antiquarian</item>
+        <item>@string/job.artist</item>
+        <item>@string/job.athlete</item>
+        <item>@string/job.author</item>
+        <item>@string/job.clergyman</item>
+        <item>@string/job.criminal</item>
+        <item>@string/job.dilettante</item>
+        <item>@string/job.doctorOfMedicine</item>
+        <item>@string/job.drifter</item>
+        <item>@string/job.engineer</item>
+        <item>@string/job.entertainer</item>
+        <item>@string/job.farmer</item>
+        <item>@string/job.journalist</item>
+        <item>@string/job.lawyer</item>
+        <item>@string/job.militaryOfficer</item>
+        <item>@string/job.missionary</item>
+        <item>@string/job.musician</item>
+        <item>@string/job.parapsychologist</item>
+        <item>@string/job.pilot</item>
+        <item>@string/job.policeDetective</item>
+        <item>@string/job.policeman</item>
+        <item>@string/job.privateInvestigator</item>
+        <item>@string/job.professor</item>
+        <item>@string/job.soldier</item>
     </string-array>
 
     <array name="jobs_id">
+        <item>@string/occupation.antiquarian</item>
+        <item>@string/occupation.artist</item>
+        <item>@string/occupation.athlete</item>
+        <item>@string/occupation.author</item>
+        <item>@string/occupation.clergyman</item>
+        <item>@string/occupation.criminal</item>
+        <item>@string/occupation.dilettante</item>
         <item>@string/occupation.doctorOfMedicine</item>
+        <item>@string/occupation.drifter</item>
+        <item>@string/occupation.engineer</item>
+        <item>@string/occupation.entertainer</item>
+        <item>@string/occupation.farmer</item>
+        <item>@string/occupation.journalist</item>
+        <item>@string/occupation.lawyer</item>
+        <item>@string/occupation.militaryOfficer</item>
+        <item>@string/occupation.missionary</item>
+        <item>@string/occupation.musician</item>
+        <item>@string/occupation.parapsychologist</item>
+        <item>@string/occupation.pilot</item>
+        <item>@string/occupation.policeDetective</item>
+        <item>@string/occupation.policeman</item>
+        <item>@string/occupation.privateInvestigator</item>
+        <item>@string/occupation.professor</item>
+        <item>@string/occupation.soldier</item>
     </array>
 
 </resources>

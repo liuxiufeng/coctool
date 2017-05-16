@@ -41,6 +41,10 @@
                         android:gravity="center"
                         android:hint="请输入姓名"
                         android:maxLines="1"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:scrollHorizontally="true"
+                        android:ellipsize="end"
                         android:text="@={mv.avatar.name}" />
 
                     <LinearLayout

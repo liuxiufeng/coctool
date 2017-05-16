@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="occupation.doctorOfMedicine">{"name":"医生","skillList":["医学", "急救", "信誉度","心理学","心理分析", "生物学","拉丁语", "药剂学"]}</string>
+    <string name="occupation.antiquarian">{"name":"考古学家","skillList":["艺术", "交易", "手艺","历史","图书馆使用", "其他语言","侦察"]}</string>
+    <string name="occupation.artist">{"name":"艺术家","skillList":["艺术", "手艺", "快速交谈", "历史", "摄影", "心理学", "侦察"]}</string>
+    <string name="occupation.athlete">{"name":"运动员","skillList":["攀登", "回避", "跳跃", "武术", "乘骑", "游泳", "投掷"]}</string>
+    <string name="occupation.author">{"name":"作家","skillList":["历史", "图书馆使用", "神秘学", "其他语言", "母语", "说服", "心理学"]}</string>
+    <string name="occupation.clergyman">{"name":"牧师","skillList":["会计", "历史", "图书馆使用", "聆听", "其他语言", "说服", "心理学"]}</string>
+    <string name="occupation.criminal">{"name":"罪犯","skillList":["交易", "伪装", "快速交谈", "手枪", "开锁", "潜行", "侦察"]}</string>
+    <string name="occupation.dilettante">{"name":"罪犯","skillList":["艺术", "手艺", "信誉度", "其他语言", "乘骑", "散弹枪"]}</string>
+    <string name="occupation.doctorOfMedicine">{"name":"医生","skillList":["医学", "急救", "信誉度","心理学","心理分析", "生物学","拉丁语", "药剂学"], "skillNum":9}</string>
+    <string name="occupation.drifter">{"name":"流浪汉","skillList":["交易", "快速交谈", "躲藏", "聆听", "自然史", "心理学", "潜行"]}</string>
+    <string name="occupation.engineer">{"name":"工程师","skillList":["化学", "电器修理", "地质学", "图书馆使用", "机械修理", "驾驶重机械", "物理学"]}</string>
+    <string name="occupation.entertainer">{"name":"演员","skillList":["艺术", "信誉度", "伪装", "回避", "快速交谈", "聆听", "心理学"]}</string>
+    <string name="occupation.farmer">{"name":"农夫","skillList":["手艺", "电器修理", "急救", "机械修理", "自然史", "驾驶重机械", "追踪"]}</string>
+    <string name="occupation.journalist">{"name":"记者","skillList":["快速交谈", "历史", "图书馆使用", "母语", "说服", "摄影", "心理学"]}</string>
+    <string name="occupation.lawyer">{"name":"律师","skillList":["交易", "信誉度", "快速交谈", "法律", "图书馆使用", "说服", "心理学"]}</string>
+    <string name="occupation.militaryOfficer">{"name":"军官","skillList":["会计", "交易", "信誉度", "法律", "导航", "说服", "心理学"]}</string>
+    <string name="occupation.missionary">{"name":"传教士","skillList":["艺术", "交易", "手艺", "急救", "机械修理", "医学", "自然史", "说服"]}</string>
+    <string name="occupation.musician">{"name":"音乐家","skillList":["艺术", "交易", "手艺", "快速交谈", "聆听", "说服", "心理学"]}</string>
+    <string name="occupation.parapsychologist">{"name":"通灵者","skillList":["人类学", "历史", "图书馆使用", "神秘学", "其他语言", "摄影", "心理学"]}</string>
+    <string name="occupation.pilot">{"name":"驾驶员","skillList":["天文学", "电器修理", "机械修理", "导航", "驾驶重机械", "物理学", "驾驶"]}</string>
+    <string name="occupation.policeDetective">{"name":"警探","skillList":["交易", "快速交谈", "法律", "聆听", "说服", "心理学", "侦察"]}</string>
+    <string name="occupation.policeman">{"name":"警察","skillList":["回避", "快速交谈", "急救", "格斗", "法律", "心理学"]}</string>
+    <string name="occupation.privateInvestigator">{"name":"私家侦探","skillList":["交易", "快速交谈", "法律", "图书馆使用", "开锁", "摄影", "心理学"]}</string>
+    <string name="occupation.professor">{"name":"教授","skillList":["交易", "信誉度", "图书馆使用", "其他语言", "说服", "心理学"]}</string>
+    <string name="occupation.soldier">{"name":"士兵","skillList":["回避", "急救", "躲藏", "聆听", "机械修理", "来福枪", "潜行"]}</string>
 </resources>

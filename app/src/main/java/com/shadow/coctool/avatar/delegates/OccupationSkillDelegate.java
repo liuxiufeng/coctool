@@ -49,7 +49,7 @@ public class OccupationSkillDelegate implements Delegate {
         mvh.mBinding.setSkill(skill);
 
         List<String> dropdown = new ArrayList<>();
-        for(int i = skill.getMin(); i <= 90; i++) {
+        for(int i = skill.getMin(); i <= 99; i++) {
            dropdown.add(Integer.toString(i));
         }
 

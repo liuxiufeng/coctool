@@ -16,6 +16,8 @@ public class Job implements Serializable {
 
     private List<String> freeSkillList;
 
+    private int skillNum;
+
     public Job(String name) {
         this.name = name;
     }
@@ -50,5 +52,13 @@ public class Job implements Serializable {
 
     public void setFreeSkillList(List<String> freeSkillList) {
         this.freeSkillList = freeSkillList;
+    }
+
+    public int getSkillNum() {
+        return skillNum;
+    }
+
+    public void setSkillNum(int skillNum) {
+        this.skillNum = skillNum;
     }
 }

@@ -90,7 +90,9 @@ public class SkillModelView extends BaseObservable {
     }
 
     private void addFreeSkill() {
-        for (int i = 0; i < 9 - skillList.size(); i++) {
+        int num = mAvatar.getJob().getSkillNum() == 0 ? 8 : mAvatar.getJob().getSkillNum();
+        num = model == MODEL_FREE ? 5 : num;
+        for (int i = 0; i < num - skillList.size(); i++) {
             mAdapter.addItem(new FreeSkill());
         }
         mAdapter.notifyDataSetChanged();

@@ -25,12 +25,28 @@
     <string name="avatar.idea">灵感</string>
     <string name="avatar.know">知识</string>
 
-    <string name="job.doctor">医生</string>
+    <string name="job.antiquarian">考古学家</string>
+    <string name="job.artist">艺术家</string>
+    <string name="job.athlete">运动员</string>
+    <string name="job.author">作家</string>
+    <string name="job.clergyman">牧师</string>
+    <string name="job.criminal">罪犯</string>
+    <string name="job.dilettante">罪犯</string>
+    <string name="job.doctorOfMedicine">医生</string>
+    <string name="job.drifter">流浪汉</string>
     <string name="job.engineer">工程师</string>
-    <string name="job.actor">演员</string>
+    <string name="job.entertainer">演员</string>
+    <string name="job.farmer">农夫</string>
+    <string name="job.journalist">记者</string>
+    <string name="job.lawyer">律师</string>
+    <string name="job.militaryOfficer">军官</string>
+    <string name="job.missionary">传教士</string>
+    <string name="job.musician">音乐家</string>
+    <string name="job.parapsychologist">通灵者</string>
+    <string name="job.pilot">驾驶员</string>
+    <string name="job.policeDetective">警探</string>
+    <string name="job.policeman">警察</string>
+    <string name="job.privateInvestigator">私家侦探</string>
     <string name="job.professor">教授</string>
-    <string name="job.fanatic">狂信者</string>
-    <string name="job.wardroom">军官</string>
-    <string name="job.police">警察</string>
-    <string name="job.private.detective">侦探</string>
+    <string name="job.soldier">士兵</string>
 </resources>
