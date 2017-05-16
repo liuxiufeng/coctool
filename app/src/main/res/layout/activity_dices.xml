@@ -219,6 +219,7 @@
                         android:text="发起方" />
 
                     <Spinner
+                        android:id="@+id/spnStarter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:entries="@array/vs_faces" />
@@ -229,6 +230,7 @@
                         android:text="承受方" />
 
                     <Spinner
+                        android:id="@+id/spnRecipient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:entries="@array/vs_faces" />
@@ -241,6 +243,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="@{()->mv.vsRoll()}"
                         android:text="@string/roll" />
                 </LinearLayout>
             </LinearLayout>

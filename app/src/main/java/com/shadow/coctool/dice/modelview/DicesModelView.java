@@ -46,10 +46,10 @@ public class DicesModelView extends BaseObservable {
     private void initSkillAdapter() {
 
         List<String> jobSkill = mAvatar.getJob().getSkillList();
-        if(mAvatar.getJob().getFreeSkillList() != null) {
+        if (mAvatar.getJob().getFreeSkillList() != null) {
             jobSkill.addAll(mAvatar.getJob().getFreeSkillList());
         }
-            mBinding.spnJobSkill.setAdapter(createArrayAdapter(jobSkill));
+        mBinding.spnJobSkill.setAdapter(createArrayAdapter(jobSkill));
         if (mAvatar.getFreeSkillList() != null) {
             mBinding.spnFree.setAdapter(createArrayAdapter(mAvatar.getFreeSkillList()));
         }
@@ -80,22 +80,22 @@ public class DicesModelView extends BaseObservable {
     }
 
     public void useCommonSkill() {
-        String skill = (String)mBinding.spnCommonSkill.getSelectedItem();
+        String skill = (String) mBinding.spnCommonSkill.getSelectedItem();
         useSkill(skill);
     }
 
     public void useJobSkill() {
-        String skill = (String)mBinding.spnJobSkill.getSelectedItem();
+        String skill = (String) mBinding.spnJobSkill.getSelectedItem();
         useSkill(skill);
     }
 
     public void useFreeJobSkill() {
-        String skill = (String)mBinding.spnFree.getSelectedItem();
+        String skill = (String) mBinding.spnFree.getSelectedItem();
         useSkill(skill);
     }
 
     public void useAllSkill() {
-        String skill = (String)mBinding.spnAllSkill.getSelectedItem();
+        String skill = (String) mBinding.spnAllSkill.getSelectedItem();
         useSkill(skill);
     }
 
@@ -108,6 +108,32 @@ public class DicesModelView extends BaseObservable {
 
         AlertDialog.Builder adb = new AlertDialog.Builder(mActivity);
         adb.setMessage(String.format("%d", value));
+        adb.create().show();
+    }
+
+    public void vsRoll() {
+        int starter = Integer.valueOf((String) mBinding.spnStarter.getSelectedItem());
+        int rec = Integer.valueOf((String) mBinding.spnRecipient.getSelectedItem());
+
+        int value = 50 + (starter - rec) * 5;
+        String rst;
+        AlertDialog.Builder adb = new AlertDialog.Builder(mActivity);
+        if (value >= 100) {
+            rst = "自动成功";
+        } else if (value <= 0) {
+            rst = "自动失败";
+        } else {
+            Dice dice = new Dice(100);
+            int rollValue = dice.roll();
+
+            if (value < rollValue) {
+                rst = String.format("%d < %d : 失败", value, rollValue);
+            } else {
+                rst = String.format("%d >= %d : 成功", value, rollValue);
+            }
+        }
+
+        adb.setMessage(rst);
         adb.create().show();
     }
 
