@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by lxf on 2017/4/20.
  */
@@ -15,6 +17,7 @@ public class DelegateManager {
 
     private List<Delegate> mDelegateList;
 
+    @Inject
    public DelegateManager() {
        mDelegateList = new ArrayList<>();
    }

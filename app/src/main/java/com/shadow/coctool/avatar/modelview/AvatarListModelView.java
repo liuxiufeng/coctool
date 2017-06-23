@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.orhanobut.hawk.Hawk;
+import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.avatar.adapters.AvatarCardAdapter;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
@@ -16,6 +17,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by lxf on 2017/4/24.
  */
@@ -25,15 +28,16 @@ public class AvatarListModelView {
 
     private Activity mActivity;
 
-    private AvatarCardAdapter mAdapter;
+    @Inject AvatarCardAdapter mAdapter;
 
     private List mAvatarList;
 
-    public AvatarListModelView(Activity activity, ActivityAvatarListBinding binding) {
+    @Inject
+    public AvatarListModelView(AvatarListActivity activity) {
         mActivity = activity;
-        mBinding = binding;
+    }
 
-        mAdapter = new AvatarCardAdapter(mActivity);
+    public void init() {
         mBinding.list.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.list.setAdapter(mAdapter);
     }
@@ -62,5 +66,9 @@ public class AvatarListModelView {
         mAvatarList.remove(avatar);
         Hawk.put(HawkKey.KEY_AVATAR_LIST, mAvatarList);
         updateList();
+    }
+
+    public void setBinding(ActivityAvatarListBinding binding) {
+        this.mBinding = binding;
     }
 }

@@ -18,7 +18,7 @@ import recycledelegate.Delegate;
  */
 
 public class MenuDelegate implements Delegate {
-    private Context mContext;
+     private Context mContext;
 
     public MenuDelegate(Context context) {
         mContext = context;

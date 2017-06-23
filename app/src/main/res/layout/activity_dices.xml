@@ -32,6 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:visibility="@{mv.avatar == null ? 8 : 0}"
                     android:padding="8dp">
 
                     <TextView

@@ -1,8 +1,9 @@
 package com.shadow.coctool.main.adapters;
 
-import android.content.Context;
-
+import com.shadow.coctool.main.MainActivity;
 import com.shadow.coctool.main.delegates.MenuDelegate;
+
+import javax.inject.Inject;
 
 import recycledelegate.AbsBaseAdapter;
 
@@ -12,8 +13,10 @@ import recycledelegate.AbsBaseAdapter;
 
 public class IconMenuAdapter extends AbsBaseAdapter {
 
-    public IconMenuAdapter(Context context) {
-        super(context);
+    @Inject
+    public IconMenuAdapter(MainActivity activity) {
+        super(activity);
+        init();
     }
 
     @Override

@@ -1,13 +1,16 @@
 package com.shadow.coctool.main.modelview;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.databinding.ActivityMainBinding;
 import com.shadow.coctool.dice.DicesActivity;
+import com.shadow.coctool.main.MainActivity;
 import com.shadow.coctool.main.adapters.IconMenuAdapter;
+
+import javax.inject.Inject;
 
 /**
  * Created by lxf on 2017/4/20.
@@ -18,39 +21,40 @@ public class MainModelView {
 
     private ActivityMainBinding mBinding;
 
-    private Activity mActivity;
+    private Context mContext;
 
-    private IconMenuAdapter mIconMenuAdapter;
+    @Inject IconMenuAdapter mIconMenuAdapter;
 
-    public MainModelView(Activity activity, ActivityMainBinding binding) {
-        mBinding = binding;
-        mBinding.setMv(this);
-
-        mActivity = activity;
-        init();
+    @Inject
+    public MainModelView(MainActivity activity) {
+        mContext = activity;
     }
 
-    private void init() {
-        mBinding.grid.setLayoutManager(new LinearLayoutManager(mActivity));
+    public void init() {
+        mBinding.setMv(this);
+        mBinding.grid.setLayoutManager(new LinearLayoutManager(mContext));
 
         initMenu();
     }
 
     private void initMenu() {
-        mIconMenuAdapter = new IconMenuAdapter(mActivity);
 
-        addMenu(0, new Intent(mActivity, AvatarListActivity.class), "探索者卡片");
-        addMenu(0, new Intent(mActivity, DicesActivity.class), "工具");
+        addMenu(0, new Intent(mContext, AvatarListActivity.class), "探索者卡片");
+        addMenu(0, new Intent(mContext, DicesActivity.class), "工具");
         addMenu(0, null, "跑团");
 
         mBinding.grid.setAdapter(mIconMenuAdapter);
     }
 
     private void addMenu(int resId, Intent intent, String text) {
-        IconMenu iconMenu = new IconMenu(mActivity);
+        IconMenu iconMenu = new IconMenu(mContext);
         iconMenu.setResId(resId);
         iconMenu.setIntent(intent);
         iconMenu.setText(text);
         mIconMenuAdapter.addItem(iconMenu);
+    }
+
+    public void setBinding(ActivityMainBinding mBinding) {
+        this.mBinding = mBinding;
     }
 }

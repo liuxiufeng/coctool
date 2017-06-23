@@ -14,13 +14,14 @@ import java.util.List;
 public abstract class AbsBaseAdapter extends RecyclerView.Adapter {
     protected DelegateManager mDelegateManager;
 
-    protected List<Object> mItems;
-
     protected Context mContext;
 
+    protected List<Object> mItems;
+
     public AbsBaseAdapter(Context context) {
-        mItems = new ArrayList<>();
         mContext = context;
+
+        mItems = new ArrayList<>();
         mDelegateManager = new DelegateManager();
         init();
     }

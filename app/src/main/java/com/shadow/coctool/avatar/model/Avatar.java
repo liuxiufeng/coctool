@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 
 /**
  * Created by lxf on 2017/4/20.
@@ -113,6 +115,7 @@ public class Avatar extends BaseObservable implements Serializable {
 
     private List<String> freeSkillList;
 
+    @Inject
     public Avatar() {
         mStatus = new Status();
     }

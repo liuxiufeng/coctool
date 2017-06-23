@@ -9,19 +9,25 @@ import com.shadow.coctool.avatar.modelview.AvatarListModelView;
 import com.shadow.coctool.common.Utils;
 import com.shadow.coctool.databinding.ActivityAvatarListBinding;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+
 /**
  * Created by lxf on 2017/4/20.
  */
 
 public class AvatarListActivity extends Activity {
-    private AvatarListModelView mv;
+    @Inject AvatarListModelView mv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
         ActivityAvatarListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_avatar_list);
-        mv = new AvatarListModelView(this, binding);
+        mv.setBinding(binding);
+
         Utils.replaceReturnTitleFragment(this, "探索者卡片", ()->{
             AvatarActivity.Run(this);
         });

@@ -12,8 +12,12 @@ import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
 import com.shadow.coctool.databinding.ActivityDicesBinding;
 import com.shadow.coctool.dice.Dice;
+import com.shadow.coctool.dice.DicesActivity;
 
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by lxf on 2017/5/8.
@@ -24,20 +28,16 @@ public class DicesModelView extends BaseObservable {
 
     private ActivityDicesBinding mBinding;
 
+    @Named("selectedAvatar")
     private Avatar mAvatar;
 
-    public DicesModelView(Activity activity, ActivityDicesBinding binding) {
+    @Inject
+    public DicesModelView(DicesActivity activity) {
         mActivity = activity;
-        mBinding = binding;
-
         mAvatar = Hawk.get(HawkKey.KEY_SELECTED_AVATAR);
-
-        mBinding.setMv(this);
-
-        init();
     }
 
-    private void init() {
+    public void init() {
         if (mAvatar != null) {
             initSkillAdapter();
         }
@@ -145,5 +145,10 @@ public class DicesModelView extends BaseObservable {
     public void setAvatar(Avatar mAvatar) {
         this.mAvatar = mAvatar;
         notifyPropertyChanged(BR.avatar);
+    }
+
+    public void setBinding(ActivityDicesBinding binding) {
+        this.mBinding = binding;
+        mBinding.setMv(this);
     }
 }
