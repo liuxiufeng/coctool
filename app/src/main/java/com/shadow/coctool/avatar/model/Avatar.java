@@ -167,6 +167,10 @@ public class Avatar extends BaseObservable implements Serializable {
                     break;
             }
         }
+
+        setCurrentHP(getHp());
+        setCurrentMp(getMp());
+        setCurrentSan(getSan());
         statusBaseSkillModifier();
     }
 
@@ -190,6 +194,11 @@ public class Avatar extends BaseObservable implements Serializable {
         modifier.put(context.getString(R.string.skill_idea), getIdea());
         modifier.put(context.getString(R.string.skill_knowledge), getKnow());
         mStatus.addModifier("StatusBaseSkill", modifier);
+    }
+
+    public void set(String id, int value) {
+        mStatus.set(id, value);
+        notifyPropertyChanged(BR._all);
     }
 
     @Bindable
@@ -283,6 +292,16 @@ public class Avatar extends BaseObservable implements Serializable {
     }
 
     @Bindable
+    public int getCurrentSan() {
+        return mStatus.get(SANITY);
+    }
+
+    public void setCurrentSan(int san) {
+        mStatus.set(SANITY, san);
+        notifyPropertyChanged(BR.currentSan);
+    }
+
+    @Bindable
     public int getEdu() {
         return mStatus.get(EDUCATION);
     }
@@ -311,6 +330,16 @@ public class Avatar extends BaseObservable implements Serializable {
     @Bindable
     public int getHp() {
         return (mStatus.get(CONSTITUTION) + mStatus.get(SIZE)) / 2;
+    }
+
+    @Bindable
+    public int getCurrentHP() {
+       return mStatus.get(HP);
+    }
+
+    public void setCurrentHP(int hp) {
+        mStatus.set(HP, hp);
+        notifyPropertyChanged(BR.currentHP);
     }
 
     @Bindable
@@ -348,6 +377,17 @@ public class Avatar extends BaseObservable implements Serializable {
     @Bindable
     public int getMp() {
         return mStatus.get(POWER);
+    }
+
+
+    @Bindable
+    public int getCurrentMp() {
+        return mStatus.get(MP);
+    }
+
+    public void setCurrentMp(int mp) {
+        mStatus.set(MP, mp);
+        notifyPropertyChanged(BR.currentMp);
     }
 
     @Bindable
@@ -391,6 +431,32 @@ public class Avatar extends BaseObservable implements Serializable {
 
     public int getSkill(String id) {
         return mStatus.get(id);
+    }
+
+    public Skill getSkillObj(String id) {
+        Skill skill = new Skill();
+        int total = mStatus.get(id);
+        int min = total;
+
+        Map modifier = mStatus.getModifier(Avatar.EDUCATION);
+        if (modifier != null) {
+            if (modifier.containsKey(id)) {
+                min = total - (int) modifier.get(id);
+            }
+        }
+
+        modifier = mStatus.getModifier(Avatar.INTELLIGENCE);
+        if (modifier != null) {
+            if (modifier.containsKey(id)) {
+                min = total - (int) modifier.get(id);
+            }
+        }
+
+        skill.setName(id);
+        skill.setMin(min);
+        skill.setPoint(total - min);
+
+        return skill;
     }
 
     public List<String> getFreeSkillList() {

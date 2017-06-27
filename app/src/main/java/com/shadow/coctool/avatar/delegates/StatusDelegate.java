@@ -35,7 +35,7 @@ public class StatusDelegate implements Delegate {
     }
 
     @Override
-    public void bindView(Object item, RecyclerView.ViewHolder vh) {
+    public void bindView(Object item, RecyclerView.ViewHolder vh, int position) {
         StatusItem statusItem = (StatusItem) item;
         ItemStatusSelectBinding binding = ((ViewHolder) vh).mBinding;
         binding.setMv(statusItem);

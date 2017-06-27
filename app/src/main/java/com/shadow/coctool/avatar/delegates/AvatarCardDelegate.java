@@ -2,7 +2,6 @@ package com.shadow.coctool.avatar.delegates;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 import com.orhanobut.hawk.Hawk;
 import com.shadow.coctool.R;
+import com.shadow.coctool.avatar.AvatarEditActivity;
 import com.shadow.coctool.avatar.AvatarViewActivity;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
@@ -43,28 +43,28 @@ public class AvatarCardDelegate implements Delegate {
     }
 
     @Override
-    public void bindView(Object item, RecyclerView.ViewHolder vh) {
+    public void bindView(Object item, RecyclerView.ViewHolder vh, int position) {
         ViewHolder mVh = (ViewHolder) vh;
         Avatar avatar = (Avatar) item;
         mVh.mBinding.setAvatar(avatar);
 
         mVh.mBinding.main.setOnClickListener((view) -> {
             AlertDialog.Builder adb = new AlertDialog.Builder(mContext);
-            CharSequence items[] = new CharSequence[]{"查看", "选择", "删除"};
-            adb.setItems(items, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which) {
-                        case 0:
-                            check(avatar);
-                            break;
-                        case 1:
-                            select(avatar);
-                            break;
-                        case 2:
-                            delete(avatar);
-                            break;
-                    }
+            CharSequence items[] = new CharSequence[]{"查看", "选择", "修改", "删除"};
+            adb.setItems(items, (dialog, which) -> {
+                switch (which) {
+                    case 0:
+                        check(avatar);
+                        break;
+                    case 1:
+                        select(avatar);
+                        break;
+                    case 2:
+                        edit(avatar, position);
+                        break;
+                    case 3:
+                        delete(avatar);
+                        break;
                 }
             });
 
@@ -83,13 +83,17 @@ public class AvatarCardDelegate implements Delegate {
         }
     }
 
-    private void check(Avatar avatar)  {
+    private void check(Avatar avatar) {
         AvatarViewActivity.Run(mContext, avatar);
     }
 
     private void select(Avatar avatar) {
         Toast.makeText(mContext, String.format("已选择%s作为使用角色", avatar.getName()), Toast.LENGTH_SHORT).show();
         Hawk.put(HawkKey.KEY_SELECTED_AVATAR, avatar);
+    }
+
+    private void edit(Avatar avatar, int position) {
+        AvatarEditActivity.Run(mContext, avatar, position);
     }
 
     private void delete(Avatar avatar) {

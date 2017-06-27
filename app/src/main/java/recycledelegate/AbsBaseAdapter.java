@@ -33,7 +33,7 @@ public abstract class AbsBaseAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        mDelegateManager.onBindView(mItems.get(position), holder);
+        mDelegateManager.onBindView(mItems.get(position), holder, position);
     }
 
     @Override

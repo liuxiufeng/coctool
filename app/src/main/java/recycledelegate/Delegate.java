@@ -13,5 +13,5 @@ public interface Delegate {
 
     RecyclerView.ViewHolder createViewHolder(ViewGroup parent);
 
-   void bindView(Object item, RecyclerView.ViewHolder vh);
+   void bindView(Object item, RecyclerView.ViewHolder vh, int position);
 }

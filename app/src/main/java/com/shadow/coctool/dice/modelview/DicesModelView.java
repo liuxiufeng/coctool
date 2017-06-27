@@ -4,18 +4,25 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.DataBindingUtil;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.orhanobut.hawk.Hawk;
+import com.shadow.coctool.R;
 import com.shadow.coctool.avatar.AvatarViewActivity;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
 import com.shadow.coctool.databinding.ActivityDicesBinding;
+import com.shadow.coctool.databinding.DialogStatusChangeBinding;
 import com.shadow.coctool.dice.Dice;
 import com.shadow.coctool.dice.DicesActivity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,9 +32,16 @@ import javax.inject.Named;
  */
 
 public class DicesModelView extends BaseObservable {
+    public static final String MODIFIER = "current";
+
     private Activity mActivity;
 
     private ActivityDicesBinding mBinding;
+
+    @Inject DialogStatusChangeModelView dialogStatusChangeModelView;
+
+    AlertDialog changeDialog;
+
 
     @Named("selectedAvatar")
     private Avatar mAvatar;
@@ -41,6 +55,7 @@ public class DicesModelView extends BaseObservable {
     public void init() {
         if (mAvatar != null) {
             initSkillAdapter();
+            createStatusChangeDialog();
         }
     }
 
@@ -155,5 +170,59 @@ public class DicesModelView extends BaseObservable {
     public void setBinding(ActivityDicesBinding binding) {
         this.mBinding = binding;
         mBinding.setMv(this);
+    }
+
+    private void createStatusChangeDialog() {
+        View dialogView = LayoutInflater.from(mActivity).inflate(R.layout.dialog_status_change, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        DialogStatusChangeBinding binding = DataBindingUtil.bind(dialogView);
+
+        dialogStatusChangeModelView.setBinding(binding);
+
+        builder.setView(dialogView)
+                .setCancelable(false)
+                .setNegativeButton("取消", (dialog, id) -> {
+                })
+                .setPositiveButton("确定",
+                        (dialog, id) -> {
+                            Map modifier = mAvatar.getModifier(MODIFIER);
+                            if (modifier == null) {
+                                modifier = new HashMap();
+                            }
+
+                            modifier.put(dialogStatusChangeModelView.getId(), dialogStatusChangeModelView.getCurrentValue());
+
+                            mAvatar.addModifier(MODIFIER, modifier);
+
+                            Hawk.put(HawkKey.KEY_SELECTED_AVATAR, mAvatar);
+                            mAvatar.notifyPropertyChanged(BR._all);
+                        }
+                );
+
+        changeDialog = builder.create();
+    }
+
+    public void changeHP() {
+        dialogStatusChangeModelView.setId(Avatar.HP);
+        dialogStatusChangeModelView.setCurrentValue(mAvatar.getCurrentHP());
+        dialogStatusChangeModelView.setBaseValue(mAvatar.getHp());
+
+        changeDialog.show();
+    }
+
+    public void changeMP() {
+        dialogStatusChangeModelView.setId(Avatar.MP);
+        dialogStatusChangeModelView.setCurrentValue(mAvatar.getCurrentMp());
+        dialogStatusChangeModelView.setBaseValue(mAvatar.getMp());
+
+        changeDialog.show();
+    }
+
+    public void changeSAN() {
+        dialogStatusChangeModelView.setId(Avatar.SANITY);
+        dialogStatusChangeModelView.setCurrentValue(mAvatar.getCurrentSan());
+        dialogStatusChangeModelView.setBaseValue(mAvatar.getSan());
+
+        changeDialog.show();
     }
 }

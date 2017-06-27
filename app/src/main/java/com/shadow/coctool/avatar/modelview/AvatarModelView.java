@@ -171,13 +171,11 @@ public class AvatarModelView extends BaseObservable {
         builder.setView(dialogView)
                 .setCancelable(false)
                 .setPositiveButton("确认",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                mAvatar.addModifier(Avatar.AGE, mDialogMV.getModifier());
-                                mAvatar.statusBaseSkillModifier();
-                            }
-                        });
+                        (DialogInterface dialog, int id) -> {
+                            mAvatar.addModifier(Avatar.AGE, mDialogMV.getModifier());
+                            mAvatar.statusBaseSkillModifier();
+                        }
+                );
 
         mAgeDialog = builder.create();
     }
@@ -188,6 +186,7 @@ public class AvatarModelView extends BaseObservable {
         DialogRerollBinding binding = DataBindingUtil.bind(dialogView);
 
         mStatusSelectModelView.setBinding(binding);
+        mStatusSelectModelView.setmAvatar(mAvatar);
         mStatusSelectModelView.init();
 
 

@@ -36,7 +36,7 @@ public class SkillViewDelegate implements Delegate {
     }
 
     @Override
-    public void bindView(Object item, RecyclerView.ViewHolder vh) {
+    public void bindView(Object item, RecyclerView.ViewHolder vh, int position) {
         Skill skill = (Skill) item;
         ViewHolder mvh = (ViewHolder) vh;
         mvh.mBinding.setSkill(skill);

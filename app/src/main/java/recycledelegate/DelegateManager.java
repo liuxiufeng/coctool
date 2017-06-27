@@ -42,10 +42,10 @@ public class DelegateManager {
         return null;
     }
 
-    public void onBindView (Object item, RecyclerView.ViewHolder vh) {
+    public void onBindView (Object item, RecyclerView.ViewHolder vh, int position) {
         int viewType = vh.getItemViewType();
         Delegate delegate = mDelegateList.get(viewType);
-        delegate.bindView(item, vh);
+        delegate.bindView(item, vh, position);
     }
 
     public DelegateManager add(Delegate delegate) {

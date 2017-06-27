@@ -35,7 +35,7 @@ public class MenuDelegate implements Delegate {
     }
 
     @Override
-    public void bindView(Object item, RecyclerView.ViewHolder vh) {
+    public void bindView(Object item, RecyclerView.ViewHolder vh, int position) {
         final IconMenu iconMenu = (IconMenu) item;
         final ViewHolder mVh = (ViewHolder) vh;
         mVh.mBinding.setMenu(iconMenu);

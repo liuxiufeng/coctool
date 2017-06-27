@@ -9,15 +9,18 @@ public class StatusItem {
 
     private String name;
 
+    private String status;
+
     private boolean isCheck;
 
     public StatusItem() {
 
     }
 
-    public StatusItem(String showName, String name) {
+    public StatusItem(String showName, String name, int status) {
         this.showName = showName;
         this.name = name;
+        this.status = String.valueOf(status);
         this.isCheck = false;
     }
 
@@ -43,5 +46,13 @@ public class StatusItem {
 
     public void setCheck(boolean check) {
         isCheck = check;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

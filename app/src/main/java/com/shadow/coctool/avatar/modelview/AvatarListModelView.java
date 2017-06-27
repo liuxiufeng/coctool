@@ -1,9 +1,11 @@
 package com.shadow.coctool.avatar.modelview;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.orhanobut.hawk.Hawk;
+import com.shadow.coctool.avatar.AvatarEditActivity;
 import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.avatar.adapters.AvatarCardAdapter;
 import com.shadow.coctool.avatar.model.Avatar;
@@ -28,7 +30,8 @@ public class AvatarListModelView {
 
     private Activity mActivity;
 
-    @Inject AvatarCardAdapter mAdapter;
+    @Inject
+    AvatarCardAdapter mAdapter;
 
     private List mAvatarList;
 
@@ -42,7 +45,7 @@ public class AvatarListModelView {
         mBinding.list.setAdapter(mAdapter);
     }
 
-    public void onResume(){
+    public void onResume() {
         mAvatarList = Hawk.get(HawkKey.KEY_AVATAR_LIST);
         if (mAvatarList == null) {
             mAvatarList = new ArrayList();
@@ -70,5 +73,16 @@ public class AvatarListModelView {
 
     public void setBinding(ActivityAvatarListBinding binding) {
         this.mBinding = binding;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case AvatarEditActivity.REQUEST_CODE:
+                    int position  = data.getIntExtra(AvatarEditActivity.KEY_POSITION, -1);
+                    Avatar avatar = (Avatar) data.getSerializableExtra(AvatarEditActivity.KEY_AVATAR);
+                    mAdapter.replace(position, avatar);
+            }
+        }
     }
 }

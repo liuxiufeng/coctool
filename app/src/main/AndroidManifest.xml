@@ -26,6 +26,8 @@
 
         <activity android:name=".avatar.SkillActivity"/>
 
+        <activity android:name=".avatar.AvatarEditActivity"/>
+
         <activity android:name=".avatar.AvatarViewActivity"/>
 
         <activity android:name=".dice.DicesActivity"/>

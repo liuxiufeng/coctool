@@ -21,7 +21,7 @@
     <string name="skill.param.firstAid">{"name":"急救", "min":30}</string>
     <string name="skill.param.fist">{"name":"拳击", "min":50}</string>
     <string name="skill.param.geology">{"name":"地质学", "min":1}</string>
-    <string name="skill.param.grapple">{"name":"格斗", "min":15}</string>
+    <string name="skill.param.grapple">{"name":"擒抱", "min":25}</string>
     <string name="skill.param.handgun">{"name":"手枪", "min":20}</string>
     <string name="skill.param.headButt">{"name":"头击", "min":10}</string>
     <string name="skill.param.hide">{"name":"躲藏", "min":10}</string>

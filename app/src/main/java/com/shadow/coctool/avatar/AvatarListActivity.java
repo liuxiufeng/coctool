@@ -1,6 +1,7 @@
 package com.shadow.coctool.avatar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
@@ -44,5 +45,10 @@ public class AvatarListActivity extends Activity {
     protected void onStop() {
         super.onStop();
         mv.onStop();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mv.onActivityResult(requestCode, resultCode, data);
     }
 }

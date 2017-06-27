@@ -43,7 +43,7 @@ public class OccupationSkillDelegate implements Delegate {
     }
 
     @Override
-    public void bindView(Object item, RecyclerView.ViewHolder vh) {
+    public void bindView(Object item, RecyclerView.ViewHolder vh, int position) {
         Skill skill = (Skill) item;
         ViewHolder mvh = (ViewHolder) vh;
         mvh.mBinding.setSkill(skill);
@@ -70,6 +70,8 @@ public class OccupationSkillDelegate implements Delegate {
 
             }
         });
+
+        mvh.mBinding.total.setSelection(skill.getPoint());
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {

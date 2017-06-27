@@ -43,6 +43,10 @@ public class Status implements Serializable {
         return total;
     }
 
+    public int getBase(String id) {
+        return baseStatus.get(id);
+    }
+
     public void addModifier(String id, Map modifier) {
         modifiers.put(id, modifier);
     }

@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="mv"
-            type="com.shadow.coctool.avatar.model.StatusItem"/>
+            type="com.shadow.coctool.dice.modelview.DialogStatusChangeModelView"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/status_name"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{mv.showName}" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@{mv.status}"
-            android:layout_weight="1"
+            android:text="-"
+            android:onClick="@{(v)-> mv.minus()}"
             />
 
-        <CheckBox
-            android:id="@+id/checkbox"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="@{mv.isCheck}"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:text="@{Integer.toString(mv.currentValue)}" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:onClick="@{(v)->mv.add()}"
             />
     </LinearLayout>
 </layout>

@@ -75,9 +75,7 @@ public class SkillModelView extends BaseObservable {
     private void addJobSkill() {
         List<String> skillNames = mAvatar.getJob().getSkillList();
         for (String name : skillNames) {
-            Skill skill = new Skill();
-            skill.setName(name);
-            skill.setMin(mAvatar.getSkill(name));
+            Skill skill = mAvatar.getSkillObj(name);
             try {
                 skill = skill.clone();
                 mAdapter.addItem(skill);
@@ -89,9 +87,22 @@ public class SkillModelView extends BaseObservable {
         mAdapter.notifyDataSetChanged();
     }
 
-    private void addFreeSkill() {
-        int num = mAvatar.getJob().getSkillNum() == 0 ? 8 : mAvatar.getJob().getSkillNum();
+    private void addFreeSkill() { int num = mAvatar.getJob().getSkillNum() == 0 ? 8 : mAvatar.getJob().getSkillNum();
         num = model == MODEL_FREE ? 5 : num;
+
+        List<String> addedSkills = model == MODEL_FREE ? mAvatar.getFreeSkillList() : mAvatar.getJob().getFreeSkillList();
+
+        if (addedSkills != null) {
+            for (String str : addedSkills) {
+                FreeSkill freeSkill = new FreeSkill();
+                Skill skill = new Skill();
+                skill.setName(str);
+                freeSkill.setSkill(skill);
+                mAdapter.addItem(freeSkill);
+                num--;
+            }
+        }
+
         for (int i = 0; i < num - skillList.size(); i++) {
             mAdapter.addItem(new FreeSkill());
         }

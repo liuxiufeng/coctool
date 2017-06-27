@@ -43,10 +43,68 @@
                         android:textSize="24sp"
                         android:onClick="@{(v)-> mv.viewAvatar()}"
                         />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="状态" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/avatar.hp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:onClick="@{(v)->(mv.changeHP())}"
+                            android:text="@{Integer.toString(mv.avatar.currentHP) + `/` + Integer.toString(mv.avatar.hp)}"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/avatar.mp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:onClick="@{(v)->(mv.changeMP())}"
+                            android:text="@{Integer.toString(mv.avatar.currentMp) + `/` + Integer.toString(mv.avatar.mp)}"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/avatar.san"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:onClick="@{(v)->(mv.changeSAN())}"
+                            android:text="@{Integer.toString(mv.avatar.currentSan) + `/` + Integer.toString(mv.avatar.san)}"
+                            />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="常用技能" />
 
                     <LinearLayout
