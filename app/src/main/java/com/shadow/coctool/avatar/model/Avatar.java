@@ -393,6 +393,32 @@ public class Avatar extends BaseObservable implements Serializable {
         return mStatus.get(id);
     }
 
+    public Skill getSkillObj(String id) {
+        Skill skill = new Skill();
+        int total = mStatus.get(id);
+        int min = total;
+
+        Map modifier = mStatus.getModifier(Avatar.EDUCATION);
+        if (modifier != null) {
+            if (modifier.containsKey(id)) {
+                min = total - (int) modifier.get(id);
+            }
+        }
+
+        modifier = mStatus.getModifier(Avatar.INTELLIGENCE);
+        if (modifier != null) {
+            if (modifier.containsKey(id)) {
+                min = total - (int) modifier.get(id);
+            }
+        }
+
+        skill.setName(id);
+        skill.setMin(min);
+        skill.setPoint(total - min);
+
+        return skill;
+    }
+
     public List<String> getFreeSkillList() {
         return freeSkillList;
     }

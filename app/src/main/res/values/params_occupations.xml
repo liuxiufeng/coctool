@@ -6,7 +6,7 @@
     <string name="occupation.author">{"name":"作家","skillList":["历史", "图书馆使用", "神秘学", "其他语言", "母语", "说服", "心理学"]}</string>
     <string name="occupation.clergyman">{"name":"牧师","skillList":["会计", "历史", "图书馆使用", "聆听", "其他语言", "说服", "心理学"]}</string>
     <string name="occupation.criminal">{"name":"罪犯","skillList":["交易", "伪装", "快速交谈", "手枪", "开锁", "潜行", "侦察"]}</string>
-    <string name="occupation.dilettante">{"name":"罪犯","skillList":["艺术", "手艺", "信誉度", "其他语言", "乘骑", "散弹枪"]}</string>
+    <string name="occupation.dilettante">{"name":"业务爱好者","skillList":["艺术", "手艺", "信誉度", "其他语言", "乘骑", "散弹枪"]}</string>
     <string name="occupation.doctorOfMedicine">{"name":"医生","skillList":["医学", "急救", "信誉度","心理学","心理分析", "生物学","拉丁语", "药剂学"], "skillNum":9}</string>
     <string name="occupation.drifter">{"name":"流浪汉","skillList":["交易", "快速交谈", "躲藏", "聆听", "自然史", "心理学", "潜行"]}</string>
     <string name="occupation.engineer">{"name":"工程师","skillList":["化学", "电器修理", "地质学", "图书馆使用", "机械修理", "驾驶重机械", "物理学"]}</string>

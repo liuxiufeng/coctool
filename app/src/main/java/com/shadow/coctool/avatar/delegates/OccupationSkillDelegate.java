@@ -70,6 +70,8 @@ public class OccupationSkillDelegate implements Delegate {
 
             }
         });
+
+        mvh.mBinding.total.setSelection(skill.getPoint());
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {

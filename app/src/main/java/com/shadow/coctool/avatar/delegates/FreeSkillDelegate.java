@@ -52,6 +52,7 @@ public class FreeSkillDelegate implements Delegate {
         FreeSkill skill = (FreeSkill) item;
         ViewHolder mvh = (ViewHolder) vh;
 
+
         mvh.mBinding.total.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -71,11 +72,8 @@ public class FreeSkillDelegate implements Delegate {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String skillId = (String) parent.getSelectedItem();
                 if (skillId != null && !skillId.equals("")) {
-                    Skill newSkill = new Skill();
-                    newSkill.setName(skillId);
-                    newSkill.setMin(mAvatar.getSkill(skillId));
                     skill.setPreSkill(skill.getSkill());
-                    skill.setSkill(newSkill);
+                    skill.setSkill(mAvatar.getSkillObj(skillId));
                     createAdapter(skill.getSkill(), mvh.mBinding);
                 } else {
                     skill.setPreSkill(skill.getSkill());
@@ -90,6 +88,16 @@ public class FreeSkillDelegate implements Delegate {
 
             }
         });
+
+        Skill skillNow = skill.getSkill();
+        if (skillNow == null) return;
+        for(int i = 1; i <= mvh.mBinding.spnSkill.getCount(); i++) {
+            String name =(String)mvh.mBinding.spnSkill.getItemAtPosition(i);
+            if (skillNow.getName().equals(name)) {
+                mvh.mBinding.spnSkill.setSelection(i);
+                break;
+            }
+        }
     }
 
     private void createAdapter(Skill skill, ItemFreeSkillBinding binding) {
@@ -101,7 +109,9 @@ public class FreeSkillDelegate implements Delegate {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,android.R.layout.simple_spinner_item, dropdown);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         binding.total.setAdapter(adapter);
+        binding.total.setSelection(skill.getPoint());
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
