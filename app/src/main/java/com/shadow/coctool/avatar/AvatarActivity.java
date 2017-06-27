@@ -12,15 +12,19 @@ import com.shadow.coctool.avatar.modelview.AvatarModelView;
 import com.shadow.coctool.common.Utils;
 import com.shadow.coctool.databinding.ActivityAvatarBinding;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+
 /**
  * Created by lxf on 2017/4/25.
  */
 
 public class AvatarActivity extends Activity {
-    public static final String KEY_AVATAR= "avatar";
+    public static final String KEY_AVATAR = "avatar";
 
-
-    private AvatarModelView mv;
+    @Inject
+    AvatarModelView mv;
 
     public static void Run(Context context) {
         Intent intent = new Intent(context, AvatarActivity.class);
@@ -29,10 +33,13 @@ public class AvatarActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
         ActivityAvatarBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_avatar);
-        mv = new AvatarModelView(this, binding);
+        mv.setBinding(binding);
+        mv.init();
+
         Utils.replaceReturnTitleFragment(this, "探索者");
     }
 

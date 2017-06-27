@@ -27,6 +27,7 @@ public class AvatarListActivity extends Activity {
 
         ActivityAvatarListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_avatar_list);
         mv.setBinding(binding);
+        mv.init();
 
         Utils.replaceReturnTitleFragment(this, "探索者卡片", ()->{
             AvatarActivity.Run(this);

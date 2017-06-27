@@ -1,6 +1,8 @@
 package com.shadow.coctool.inject;
 
+import com.shadow.coctool.avatar.AvatarActivity;
 import com.shadow.coctool.avatar.AvatarListActivity;
+import com.shadow.coctool.avatar.AvatarViewActivity;
 import com.shadow.coctool.avatar.SkillActivity;
 import com.shadow.coctool.dice.DicesActivity;
 import com.shadow.coctool.main.MainActivity;
@@ -20,6 +22,12 @@ public abstract class AndroidBindingModule {
 
     @ContributesAndroidInjector
     abstract AvatarListActivity avatarListActivity();
+
+    @ContributesAndroidInjector
+    abstract AvatarActivity avatarActivity();
+
+    @ContributesAndroidInjector
+    abstract AvatarViewActivity avatarViewActivity();
 
     @ContributesAndroidInjector
     abstract SkillActivity skillActivity();

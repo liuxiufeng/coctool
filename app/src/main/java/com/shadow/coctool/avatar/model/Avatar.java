@@ -109,6 +109,10 @@ public class Avatar extends BaseObservable implements Serializable {
 
     private String sex;
 
+    private String memo;
+
+    private String tools;
+
     private Status mStatus;
 
     private Job job;
@@ -118,32 +122,51 @@ public class Avatar extends BaseObservable implements Serializable {
     @Inject
     public Avatar() {
         mStatus = new Status();
+        createSkillMap();
     }
 
-    public void create() {
+    public void create(List<String> rollList) {
+        if (rollList == null || rollList.size() == 0) {
+            return;
+        }
+
         //6面骰
         Dice sixDice = new Dice(6);
 
-        //3d6
-        setStr(sixDice.roll(3));
+        for (String status : rollList) {
+            //3d6
+            switch (status) {
+                case Avatar.STRENGTH:
+                    setStr(sixDice.roll(3));
+                    break;
+                case Avatar.DEXTERITY:
+                    setDex(sixDice.roll(3));
+                    break;
+                case Avatar.CONSTITUTION:
+                    setCon(sixDice.roll(3));
+                    break;
+                case Avatar.POWER:
+                    setPow(sixDice.roll(3));
+                    break;
+                case Avatar.APPEARANCE:
+                    setApp(sixDice.roll(3));
+                    break;
 
-        setDex(sixDice.roll(3));
+                    //2d6+6
+                case Avatar.INTELLIGENCE:
+                    setInti(sixDice.roll(2) + 6);
+                    break;
 
-        setCon(sixDice.roll(3));
+                case Avatar.SIZE:
+                    setSize(sixDice.roll(2) + 6);
+                    break;
 
-        setPow(sixDice.roll(3));
-
-        setApp(sixDice.roll(3));
-
-        //2d6+6
-        setInti(sixDice.roll(2) + 6);
-
-        setSize(sixDice.roll(2) + 6);
-
-        //2d3
-        setEdu(sixDice.roll(3) + 3);
-
-        createSkillMap();
+                    //2d3
+                case Avatar.EDUCATION:
+                    setEdu(sixDice.roll(3) + 3);
+                    break;
+            }
+        }
         statusBaseSkillModifier();
     }
 
@@ -376,5 +399,25 @@ public class Avatar extends BaseObservable implements Serializable {
 
     public void setFreeSkillList(List<String> freeSkillList) {
         this.freeSkillList = freeSkillList;
+    }
+
+    @Bindable
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+        notifyPropertyChanged(BR.memo);
+    }
+
+    @Bindable
+    public String getTools() {
+        return tools;
+    }
+
+    public void setTools(String tools) {
+        this.tools = tools;
+        notifyPropertyChanged(BR.tools);
     }
 }

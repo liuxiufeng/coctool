@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.orhanobut.hawk.Hawk;
+import com.shadow.coctool.avatar.AvatarViewActivity;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
 import com.shadow.coctool.databinding.ActivityDicesBinding;
@@ -135,6 +136,10 @@ public class DicesModelView extends BaseObservable {
 
         adb.setMessage(rst);
         adb.create().show();
+    }
+
+    public void viewAvatar() {
+        AvatarViewActivity.Run(mActivity, mAvatar);
     }
 
     @Bindable

@@ -15,15 +15,20 @@ import android.widget.Toast;
 import com.android.databinding.library.baseAdapters.BR;
 import com.orhanobut.hawk.Hawk;
 import com.shadow.coctool.R;
+import com.shadow.coctool.avatar.AvatarActivity;
 import com.shadow.coctool.avatar.SkillActivity;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.HawkKey;
 import com.shadow.coctool.common.Utils;
 import com.shadow.coctool.databinding.ActivityAvatarBinding;
 import com.shadow.coctool.databinding.DialogAgeModifierBinding;
+import com.shadow.coctool.databinding.DialogRerollBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  * Created by lxf on 2017/4/25.
@@ -43,18 +48,53 @@ public class AvatarModelView extends BaseObservable {
 
     private AlertDialog mAgeDialog;
 
-    public AvatarModelView(Activity activity, ActivityAvatarBinding binding) {
-        mActivity = activity;
-        mBinding = binding;
-        binding.setMv(this);
+    private int rollCount;
 
-        createAgeModifierDialog();
+    @Inject
+    StatusSelectModelView mStatusSelectModelView;
+
+    private AlertDialog mReRollDialog;
+
+    private List<String> rollList;
+
+    @Inject
+    public AvatarModelView(AvatarActivity activity) {
+        mActivity = activity;
+
+        initList();
         newAvatar();
+
+        rollCount = 3;
     }
 
     private void newAvatar() {
         mAvatar = new Avatar();
-        mAvatar.create();
+        mAvatar.create(rollList);
+    }
+
+    private void initList() {
+        rollList = new ArrayList<>();
+
+        rollList.add(Avatar.STRENGTH);
+
+        rollList.add(Avatar.DEXTERITY);
+
+        rollList.add(Avatar.CONSTITUTION);
+
+        rollList.add(Avatar.POWER);
+
+        rollList.add(Avatar.APPEARANCE);
+
+        rollList.add(Avatar.INTELLIGENCE);
+
+        rollList.add(Avatar.SIZE);
+
+        rollList.add(Avatar.EDUCATION);
+    }
+
+    public void init() {
+        createReRollDialog();
+        createAgeModifierDialog();
 
         mBinding.spnSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -96,7 +136,7 @@ public class AvatarModelView extends BaseObservable {
                     mDialogMV.setPoints(points);
                     mAgeDialog.show();
                 } else {
-                    mAvatar.addModifier(Avatar.EDUCATION, mDialogMV.getModifier());
+                    mAvatar.addModifier(Avatar.AGE, mDialogMV.getModifier());
                 }
             }
 
@@ -134,12 +174,50 @@ public class AvatarModelView extends BaseObservable {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                mAvatar.addModifier(Avatar.EDUCATION, mDialogMV.getModifier());
+                                mAvatar.addModifier(Avatar.AGE, mDialogMV.getModifier());
                                 mAvatar.statusBaseSkillModifier();
                             }
                         });
 
         mAgeDialog = builder.create();
+    }
+
+    private void createReRollDialog() {
+        View dialogView = LayoutInflater.from(mActivity).inflate(R.layout.dialog_reroll, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+        DialogRerollBinding binding = DataBindingUtil.bind(dialogView);
+
+        mStatusSelectModelView.setBinding(binding);
+        mStatusSelectModelView.init();
+
+
+        builder.setView(dialogView)
+                .setCancelable(false)
+                .setNegativeButton("取消", (dialog, id) -> {
+                })
+                .setPositiveButton("重新投掷",
+                        (dialog, id) -> {
+                            List<String> rollList = mStatusSelectModelView.getSelected();
+                            mAvatar.create(rollList);
+                            mAvatar.removeModifier(Avatar.AGE);
+                            mAvatar.removeModifier(Avatar.EDUCATION);
+                            mAvatar.removeModifier(Avatar.INTELLIGENCE);
+
+                            Map modifier = mAvatar.getModifier(Avatar.AGE);
+                            int edu = mAvatar.getEdu();
+                            if (modifier != null) {
+                                edu = edu - (int) modifier.get(Avatar.EDUCATION);
+                            }
+
+                            int minAge = edu + 4;
+
+                            mBinding.spnAge.setSelection(minAge - 14);
+                            mAvatar.setAge(minAge);
+                            rollCount--;
+                        }
+                );
+
+        mReRollDialog = builder.create();
     }
 
     @Bindable
@@ -166,4 +244,34 @@ public class AvatarModelView extends BaseObservable {
     public void startSkillActivity(int model) {
         SkillActivity.run(mActivity, mAvatar, model, REQUEST_SKILL);
     }
+
+    public void setBinding(ActivityAvatarBinding binding) {
+        this.mBinding = binding;
+        this.mBinding.setMv(this);
+    }
+
+    public void reRoll() {
+        if (rollCount == 0) {
+            Toast.makeText(mActivity, "已超过重掷次数，不能重掷", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mStatusSelectModelView.init();
+        mReRollDialog.show();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

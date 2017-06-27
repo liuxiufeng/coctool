@@ -47,6 +47,15 @@
                         android:ellipsize="end"
                         android:text="@={mv.avatar.name}" />
 
+                    <Button
+                        android:id="@+id/reRoll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="重掷"
+                        android:onClick="@{(v)-> mv.reRoll()}"
+                        />
+
                     <LinearLayout
                         style="@style/avatar_status_layer"
                         android:layout_gravity="center_horizontal">
@@ -249,6 +258,21 @@
                         android:onClick="@{()-> mv.startSkillActivity(2)}"
                         android:text="分配兴趣技能" />
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="道具"
+                        android:maxLines="5"
+                        android:text="@={mv.avatar.tools}"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="备注"
+                        android:maxLines="5"
+                        android:text="@={mv.avatar.memo}"
+                        />
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

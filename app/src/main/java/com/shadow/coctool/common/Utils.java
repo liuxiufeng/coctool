@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.support.v7.widget.Toolbar;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -40,6 +41,12 @@ public class Utils {
 
     public static void replaceReturnTitleFragment(Activity activity, String title, ReturnTitleModelView.AddCallback callback) {
         replaceReturnTitleFragment(activity, title, R.id.title, ReturnTitleModelView.MODEL_ADD, callback);
+    }
+
+    public static void fixedToolbar(Activity activity, Toolbar toolbar) {
+        toolbar.setNavigationOnClickListener((v)-> {
+            activity.finish();
+        });
     }
 
     public static JsonObject skillBuilder(int id) {

@@ -39,7 +39,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@{mv.avatar.name}" />
+                        android:text="@{mv.avatar.name}"
+                        android:textSize="24sp"
+                        android:onClick="@{(v)-> mv.viewAvatar()}"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -164,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="nDmRolls" />
+                    android:text="nDm" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

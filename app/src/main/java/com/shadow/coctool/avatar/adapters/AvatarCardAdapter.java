@@ -1,7 +1,6 @@
 package com.shadow.coctool.avatar.adapters;
 
-import android.content.Context;
-
+import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.avatar.delegates.AvatarCardDelegate;
 
 import javax.inject.Inject;
@@ -15,7 +14,7 @@ import recycledelegate.AbsBaseAdapter;
 public class AvatarCardAdapter extends AbsBaseAdapter {
 
     @Inject
-    public AvatarCardAdapter(Context context) {
+    public AvatarCardAdapter(AvatarListActivity context) {
         super(context);
     }
 
