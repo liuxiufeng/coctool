@@ -190,7 +190,20 @@ public class DicesModelView extends BaseObservable {
                                 modifier = new HashMap();
                             }
 
-                            modifier.put(dialogStatusChangeModelView.getId(), dialogStatusChangeModelView.getCurrentValue());
+                            int bonus = modifier.get(dialogStatusChangeModelView.getId()) == null ? 0 : (int) modifier.get(dialogStatusChangeModelView.getId());
+
+                            modifier.put(dialogStatusChangeModelView.getId(),bonus + dialogStatusChangeModelView.getModifier());
+
+
+                            if (dialogStatusChangeModelView.getId().equals(Avatar.POWER)) {
+                                mAvatar.setCurrentSan(mAvatar.getSan());
+                                mAvatar.setCurrentMp(mAvatar.getMp());
+                            }
+
+                            String skillId = mActivity.getString(R.string.skill_cthulhuMythos);
+                            if (dialogStatusChangeModelView.getId().equals(skillId)) {
+                                mAvatar.setCurrentSan(mAvatar.getSan());
+                            }
 
                             mAvatar.addModifier(MODIFIER, modifier);
 
@@ -206,6 +219,7 @@ public class DicesModelView extends BaseObservable {
         dialogStatusChangeModelView.setId(Avatar.HP);
         dialogStatusChangeModelView.setCurrentValue(mAvatar.getCurrentHP());
         dialogStatusChangeModelView.setBaseValue(mAvatar.getHp());
+        dialogStatusChangeModelView.setModifier(0);
 
         changeDialog.show();
     }
@@ -214,6 +228,7 @@ public class DicesModelView extends BaseObservable {
         dialogStatusChangeModelView.setId(Avatar.MP);
         dialogStatusChangeModelView.setCurrentValue(mAvatar.getCurrentMp());
         dialogStatusChangeModelView.setBaseValue(mAvatar.getMp());
+        dialogStatusChangeModelView.setModifier(0);
 
         changeDialog.show();
     }
@@ -222,6 +237,26 @@ public class DicesModelView extends BaseObservable {
         dialogStatusChangeModelView.setId(Avatar.SANITY);
         dialogStatusChangeModelView.setCurrentValue(mAvatar.getCurrentSan());
         dialogStatusChangeModelView.setBaseValue(mAvatar.getSan());
+        dialogStatusChangeModelView.setModifier(0);
+
+        changeDialog.show();
+    }
+
+    public void changePow() {
+        dialogStatusChangeModelView.setId(Avatar.POWER);
+        dialogStatusChangeModelView.setCurrentValue(mAvatar.getPow());
+        dialogStatusChangeModelView.setBaseValue(99);
+        dialogStatusChangeModelView.setModifier(0);
+
+        changeDialog.show();
+    }
+
+    public void changeCth() {
+        String id = mActivity.getString(R.string.skill_cthulhuMythos);
+        dialogStatusChangeModelView.setId(id);
+        dialogStatusChangeModelView.setCurrentValue(mAvatar.getSkill(id));
+        dialogStatusChangeModelView.setBaseValue(99);
+        dialogStatusChangeModelView.setModifier(0);
 
         changeDialog.show();
     }

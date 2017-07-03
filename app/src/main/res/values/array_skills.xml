@@ -13,7 +13,6 @@
         <item>@string/skill.param.conceal</item>
         <item>@string/skill.param.craft</item>
         <item>@string/skill.param.creditRating</item>
-        <item>@string/skill.param.cthulhuMythos</item>
         <item>@string/skill.param.disguise</item>
         <item>@string/skill.param.dodge</item>
         <item>@string/skill.param.driveAutomobile</item>
@@ -81,7 +80,6 @@
         <item>@string/skill.conceal</item>
         <item>@string/skill.craft</item>
         <item>@string/skill.creditRating</item>
-        <item>@string/skill.cthulhuMythos</item>
         <item>@string/skill.disguise</item>
         <item>@string/skill.dodge</item>
         <item>@string/skill.driveAutomobile</item>

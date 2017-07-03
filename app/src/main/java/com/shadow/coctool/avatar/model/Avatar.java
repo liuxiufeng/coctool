@@ -288,7 +288,7 @@ public class Avatar extends BaseObservable implements Serializable {
 
     @Bindable
     public int getSan() {
-        return mStatus.get(POWER) * 5;
+        return mStatus.get(POWER) * 5 - mStatus.get("克苏鲁学");
     }
 
     @Bindable

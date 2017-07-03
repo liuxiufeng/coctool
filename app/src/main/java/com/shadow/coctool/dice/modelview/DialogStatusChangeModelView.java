@@ -20,6 +20,8 @@ public class DialogStatusChangeModelView extends BaseObservable {
 
     private int baseValue;
 
+    private int modifier;
+
     private DialogStatusChangeBinding mBinding;
 
     @Inject
@@ -37,7 +39,7 @@ public class DialogStatusChangeModelView extends BaseObservable {
 
     @Bindable
     public int getCurrentValue() {
-        return currentValue;
+        return currentValue + modifier;
     }
 
     public void setCurrentValue(int currentValue) {
@@ -56,14 +58,16 @@ public class DialogStatusChangeModelView extends BaseObservable {
     }
 
     public void add() {
-        if (currentValue < baseValue) {
-            setCurrentValue(currentValue + 1);
+        if (getCurrentValue() < baseValue) {
+            modifier++;
+            notifyPropertyChanged(BR.currentValue);
         }
     }
 
     public void minus() {
-        if (currentValue > 0) {
-            setCurrentValue(currentValue - 1);
+        if (getCurrentValue() > 0) {
+            modifier--;
+            notifyPropertyChanged(BR.currentValue);
         }
     }
 
@@ -74,5 +78,13 @@ public class DialogStatusChangeModelView extends BaseObservable {
     public void setBinding(DialogStatusChangeBinding binding) {
         this.mBinding = binding;
         mBinding.setMv(this);
+    }
+
+    public int getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(int modifier) {
+        this.modifier = modifier;
     }
 }

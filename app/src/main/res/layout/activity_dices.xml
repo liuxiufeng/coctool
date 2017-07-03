@@ -32,74 +32,76 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="@{mv.avatar == null ? 8 : 0}"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:visibility="@{mv.avatar == null ? 8 : 0}">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@{mv.avatar.name}"
-                        android:textSize="24sp"
                         android:onClick="@{(v)-> mv.viewAvatar()}"
-                        />
+                        android:text="@{mv.avatar.name}"
+                        android:textSize="24sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="状态" />
 
-                    <LinearLayout
+                    <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        >
+                        android:padding="8dp"
+                        android:stretchColumns="*">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/avatar.hp"
+                        <TableRow>
+
+                            <TextView android:text="@string/avatar.hp" />
+
+                            <TextView
+                                android:onClick="@{(v)->(mv.changeHP())}"
+                                android:text="@{Integer.toString(mv.avatar.currentHP) + `/` + Integer.toString(mv.avatar.hp)}" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/avatar.mp" />
+
+                            <TextView
+                                android:onClick="@{(v)->(mv.changeMP())}"
+                                android:text="@{Integer.toString(mv.avatar.currentMp) + `/` + Integer.toString(mv.avatar.mp)}" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/avatar.san" />
+
+                            <TextView
+                                android:onClick="@{(v)->(mv.changeSAN())}"
+                                android:text="@{Integer.toString(mv.avatar.currentSan) + `/` + Integer.toString(mv.avatar.san)}" />
+                        </TableRow>
+
+                        <TableRow android:layout_marginTop="4dp">
+
+                            <TextView android:text="@string/avatar.pow" />
+
+                            <TextView
+                                android:onClick="@{(v)-> mv.changePow()}"
+                                android:text="@{Integer.toString(mv.avatar.pow)}" />
                             />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:onClick="@{(v)->(mv.changeHP())}"
-                            android:text="@{Integer.toString(mv.avatar.currentHP) + `/` + Integer.toString(mv.avatar.hp)}"
-                            />
+                            <TextView android:text="@string/skill.cthulhuMythos" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/avatar.mp"
-                            />
+                            <TextView
+                                android:onClick="@{(v)-> mv.changeCth()}"
+                                android:text="@{Integer.toString(mv.avatar.getSkill(`克苏鲁学`))}" />
+                        </TableRow>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:onClick="@{(v)->(mv.changeMP())}"
-                            android:text="@{Integer.toString(mv.avatar.currentMp) + `/` + Integer.toString(mv.avatar.mp)}"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/avatar.san"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:onClick="@{(v)->(mv.changeSAN())}"
-                            android:text="@{Integer.toString(mv.avatar.currentSan) + `/` + Integer.toString(mv.avatar.san)}"
-                            />
-
-                    </LinearLayout>
+                    </TableLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -116,8 +118,7 @@
                             android:id="@+id/spnCommonSkill"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/common_use_skill"
-                            />
+                            android:entries="@array/common_use_skill" />
 
                         <View
                             android:layout_width="wrap_content"
@@ -202,8 +203,7 @@
                             android:id="@+id/spnAllSkill"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:entries="@array/skill_all"
-                            />
+                            android:entries="@array/skill_all" />
 
                         <View
                             android:layout_width="wrap_content"
