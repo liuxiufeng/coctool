@@ -20,6 +20,7 @@ import com.shadow.coctool.databinding.DialogStatusChangeBinding;
 import com.shadow.coctool.dice.Dice;
 import com.shadow.coctool.dice.DicesActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,8 @@ public class DicesModelView extends BaseObservable {
 
     private void initSkillAdapter() {
 
-        List<String> jobSkill = mAvatar.getJob().getSkillList();
+        List<String> jobSkill = new ArrayList<>();
+        jobSkill.addAll(mAvatar.getJob().getSkillList());
         if (mAvatar.getJob().getFreeSkillList() != null) {
             jobSkill.addAll(mAvatar.getJob().getFreeSkillList());
         }
