@@ -30,7 +30,7 @@ public class AvatarListActivity extends Activity {
         mv.setBinding(binding);
         mv.init();
 
-        Utils.replaceReturnTitleFragment(this, "探索者卡片", ()->{
+        Utils.replaceReturnTitleFragment(this, getString(R.string.investigator), ()->{
             AvatarActivity.Run(this);
         });
     }

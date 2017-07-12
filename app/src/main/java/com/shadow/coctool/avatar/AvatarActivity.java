@@ -40,7 +40,7 @@ public class AvatarActivity extends Activity {
         mv.setBinding(binding);
         mv.init();
 
-        Utils.replaceReturnTitleFragment(this, "探索者");
+        Utils.replaceReturnTitleFragment(this, "创建" + getString(R.string.investigator));
     }
 
 

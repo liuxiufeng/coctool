@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.shadow.coctool.R;
 import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.databinding.ActivityMainBinding;
 import com.shadow.coctool.dice.DicesActivity;
@@ -39,7 +40,7 @@ public class MainModelView {
 
     private void initMenu() {
 
-        addMenu(0, new Intent(mContext, AvatarListActivity.class), "探索者卡片");
+        addMenu(0, new Intent(mContext, AvatarListActivity.class), mContext.getString(R.string.investigator));
         addMenu(0, new Intent(mContext, DicesActivity.class), "工具");
         addMenu(0, null, "跑团");
 

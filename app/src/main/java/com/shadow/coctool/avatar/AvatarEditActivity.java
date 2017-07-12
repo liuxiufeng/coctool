@@ -51,6 +51,6 @@ public class AvatarEditActivity extends Activity {
 
         mv.init();
 
-        Utils.replaceReturnTitleFragment(this, "修改探索者");
+        Utils.replaceReturnTitleFragment(this, "修改" + getString(R.string.investigator));
     }
 }

@@ -34,6 +34,6 @@ public class AvatarViewActivity extends Activity {
         ActivityAvatarViewBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_avatar_view);
         Avatar avatar = (Avatar) getIntent().getSerializableExtra(KEY_AVATAR);
         mv = new AvatarViewModelView(this, binding, avatar);
-        Utils.replaceReturnTitleFragment(this, "探索者");
+        Utils.replaceReturnTitleFragment(this, getString(R.string.investigator));
     }
 }
