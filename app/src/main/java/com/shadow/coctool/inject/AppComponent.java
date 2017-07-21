@@ -1,6 +1,7 @@
 package com.shadow.coctool.inject;
 
 import com.shadow.coctool.COCToolApplication;
+import com.shadow.coctool.retrofit.ClientModule;
 
 import dagger.Component;
 import dagger.android.AndroidInjector;
@@ -12,8 +13,10 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(
         modules = {
                 AndroidBindingModule.class,
+                AndroidFragmentBindingModule.class,
                 AndroidSupportInjectionModule.class,
-                AppModule.class
+                AppModule.class,
+                ClientModule.class
         }
 )
 public interface AppComponent extends AndroidInjector<COCToolApplication>{

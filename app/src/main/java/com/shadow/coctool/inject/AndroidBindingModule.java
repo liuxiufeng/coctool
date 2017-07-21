@@ -6,6 +6,7 @@ import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.avatar.AvatarViewActivity;
 import com.shadow.coctool.avatar.SkillActivity;
 import com.shadow.coctool.dice.DicesActivity;
+import com.shadow.coctool.fragmentactivity.FragmentActivity;
 import com.shadow.coctool.main.MainActivity;
 
 import dagger.Module;
@@ -38,4 +39,7 @@ public abstract class AndroidBindingModule {
 
     @ContributesAndroidInjector
     abstract DicesActivity dicesActivity();
+
+    @ContributesAndroidInjector
+    abstract FragmentActivity fragmentActivity();
 }

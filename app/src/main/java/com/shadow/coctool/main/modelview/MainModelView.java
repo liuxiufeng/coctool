@@ -8,8 +8,10 @@ import com.shadow.coctool.R;
 import com.shadow.coctool.avatar.AvatarListActivity;
 import com.shadow.coctool.databinding.ActivityMainBinding;
 import com.shadow.coctool.dice.DicesActivity;
+import com.shadow.coctool.fragmentactivity.FragmentActivity;
 import com.shadow.coctool.main.MainActivity;
 import com.shadow.coctool.main.adapters.IconMenuAdapter;
+import com.shadow.coctool.room.OptionFragment;
 
 import javax.inject.Inject;
 
@@ -42,7 +44,11 @@ public class MainModelView {
 
         addMenu(0, new Intent(mContext, AvatarListActivity.class), mContext.getString(R.string.investigator));
         addMenu(0, new Intent(mContext, DicesActivity.class), "工具");
-        addMenu(0, null, "跑团");
+
+        Intent intent = new Intent(mContext, FragmentActivity.class);
+        intent.putExtra(FragmentActivity.TITLE, "请选择");
+        intent.putExtra(FragmentActivity.CLASS_NAME, OptionFragment.class.getName());
+        addMenu(0, intent, "跑团");
 
         mBinding.grid.setAdapter(mIconMenuAdapter);
     }

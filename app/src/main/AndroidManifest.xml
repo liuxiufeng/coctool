@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shadow.coctool">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".COCToolApplication"
         android:allowBackup="true"
@@ -31,6 +33,8 @@
         <activity android:name=".avatar.AvatarViewActivity"/>
 
         <activity android:name=".dice.DicesActivity"/>
+
+        <activity android:name=".fragmentactivity.FragmentActivity"/>
 
     </application>
 
