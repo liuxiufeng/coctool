@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="cocClient">http://192.168.137.1:8080/</string>
-    <string name="cocHost">192.168.137.1</string>
+    <string name="cocClient">http://172.104.91.132:8081/rest/</string>
+    <string name="cocHost">172.104.91.132</string>
 </resources>

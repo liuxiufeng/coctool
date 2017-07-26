@@ -1,5 +1,6 @@
 package com.shadow.coctool.main;
 
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     @Inject MainModelView mModelView;
 

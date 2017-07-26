@@ -2,6 +2,7 @@ package com.shadow.coctool.dice.modelview;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.DataBindingUtil;
@@ -35,9 +36,17 @@ import javax.inject.Named;
 public class DicesModelView extends BaseObservable {
     public static final String MODIFIER = "current";
 
+    public static final int NORMAL = 0;
+
+    public static final String RESULT = "result";
+
+    public static final int FOR_RESULT = 1;
+
     private Activity mActivity;
 
     private ActivityDicesBinding mBinding;
+
+    private int model;
 
     @Inject DialogStatusChangeModelView dialogStatusChangeModelView;
 
@@ -92,6 +101,11 @@ public class DicesModelView extends BaseObservable {
             strRst = String.format("%d < %d : 失败", value, roll);
         }
 
+        if (model == FOR_RESULT) {
+            setResult(String.format("%s 使用了 %s : %s", mAvatar.getName(), name, strRst));
+            return;
+        }
+
         AlertDialog.Builder adb = new AlertDialog.Builder(mActivity);
         adb.setMessage(strRst);
         adb.create().show();
@@ -122,10 +136,27 @@ public class DicesModelView extends BaseObservable {
         int faces = Integer.valueOf((String) mBinding.spnRolls.getSelectedItem());
 
         Dice dice = new Dice(faces);
-        int value = dice.roll(rolls);
+        int total = 0;
+        String result = "";
+
+        for(int i = 0; i < rolls; i++) {
+            if(!"".equals(result)) {
+                result += "+";
+            }
+            int value = dice.roll();
+            total += value;
+            result += String.valueOf(value);
+        }
+
+        result = String.format("投掷%dD%d结果为:(%s) = %d", rolls, faces, result, total);
+
+        if (model == FOR_RESULT) {
+            setResult(mAvatar.getName() + result);
+            return;
+        }
 
         AlertDialog.Builder adb = new AlertDialog.Builder(mActivity);
-        adb.setMessage(String.format("%d", value));
+        adb.setMessage(result);
         adb.create().show();
     }
 
@@ -145,14 +176,26 @@ public class DicesModelView extends BaseObservable {
             int rollValue = dice.roll();
 
             if (value < rollValue) {
-                rst = String.format("%d < %d : 失败", value, rollValue);
+                rst = String.format("%d < %d : 对抗失败", value, rollValue);
             } else {
-                rst = String.format("%d >= %d : 成功", value, rollValue);
+                rst = String.format("%d >= %d : 对抗成功", value, rollValue);
             }
+        }
+
+        if (model == FOR_RESULT) {
+            setResult(mAvatar.getName() + "对抗结果" + rst);
+            return;
         }
 
         adb.setMessage(rst);
         adb.create().show();
+    }
+
+    private void setResult(String result) {
+        Intent data = new Intent();
+        data.putExtra(RESULT,result);
+        mActivity.setResult(Activity.RESULT_OK, data);
+        mActivity.finish();
     }
 
     public void viewAvatar() {
@@ -261,5 +304,13 @@ public class DicesModelView extends BaseObservable {
         dialogStatusChangeModelView.setModifier(0);
 
         changeDialog.show();
+    }
+
+    public int getModel() {
+        return model;
+    }
+
+    public void setModel(int model) {
+        this.model = model;
     }
 }

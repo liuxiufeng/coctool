@@ -29,6 +29,8 @@ public class FragmentActivity extends Activity implements HasFragmentInjector {
 
     public static final String DATA = "data";
 
+    public ModelViewFragment modelViewFragment;
+
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentInjector;
 
@@ -64,23 +66,27 @@ public class FragmentActivity extends Activity implements HasFragmentInjector {
         setContentView(R.layout.activity_fragment);
 
         String title = getIntent().getStringExtra(TITLE);
-        String clsName = getIntent().getStringExtra(CLASS_NAME);
+        if (savedInstanceState != null) {
+            title = savedInstanceState.getString(TITLE);
+        }
 
         Utils.replaceReturnTitleFragment(this, title);
 
-        Fragment fragment = getFragment(clsName);
+        Fragment fragment = getFragment();
         replaceFragment(fragment);
 
     }
 
-    private Fragment getFragment(String className) {
-        try {
-            Class cls = Class.forName(className);
-            return (Fragment) cls.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putString(TITLE, getIntent().getStringExtra(TITLE));
+
+    }
+
+    private Fragment getFragment() {
+        modelViewFragment = new ModelViewFragment();
+        return modelViewFragment;
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -88,6 +94,11 @@ public class FragmentActivity extends Activity implements HasFragmentInjector {
         FragmentTransaction ftr = fm.beginTransaction();
         ftr.replace(R.id.content, fragment);
         ftr.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        modelViewFragment.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

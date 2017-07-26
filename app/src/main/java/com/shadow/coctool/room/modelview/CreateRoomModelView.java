@@ -4,17 +4,20 @@ import android.app.Activity;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.shadow.coctool.BR;
 import com.shadow.coctool.common.BaseModelView;
 import com.shadow.coctool.databinding.FragmentCreateRoomBinding;
 import com.shadow.coctool.fragmentactivity.FragmentActivity;
 import com.shadow.coctool.repositories.COCRepository;
+import com.shadow.coctool.retrofit.ClientModule;
 import com.shadow.coctool.retrofit.Result;
-import com.shadow.coctool.room.RoomFragment;
+import com.shadow.coctool.room.RoomCreator;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -23,25 +26,26 @@ import io.reactivex.disposables.Disposable;
  * Created by lxf on 2017/7/20.
  */
 
-public class CreateRoomModelView extends BaseObservable implements BaseModelView {
+public class CreateRoomModelView extends BaseModelView<FragmentCreateRoomBinding> {
     private String name;
 
     private String port;
 
-    private FragmentCreateRoomBinding binding;
-
-    private Activity mActivity;
-
-    @Inject
-    COCRepository cocRepository;
+   @Inject COCRepository cocRepository;
 
     @Inject
     public CreateRoomModelView() {
+        cocRepository = new COCRepository();
     }
 
     @Override
     public void init() {
 
+    }
+
+    @Override
+    protected void setModelView() {
+        getBinding().setMv(this);
     }
 
     public void create() {
@@ -58,13 +62,16 @@ public class CreateRoomModelView extends BaseObservable implements BaseModelView
                     Bundle data = new Bundle();
                     data.putInt(RoomModelView.PORT, Integer.valueOf(port));
 
-                    FragmentActivity.RunWithData(mActivity, "房间", RoomFragment.class.getName(), data);
+                    FragmentActivity.RunWithData(mActivity, "房间:" + port, RoomCreator.class.getName(), data);
+                } else {
+                    Toast.makeText(getActivity(), "该端口已被占用请使用其他端口", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
                 e.printStackTrace();
+                Toast.makeText(getActivity(), "无法连接服务器", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -95,13 +102,11 @@ public class CreateRoomModelView extends BaseObservable implements BaseModelView
         notifyPropertyChanged(BR.port);
     }
 
-    public void setBinding(FragmentCreateRoomBinding binding) {
-        this.binding = binding;
-        binding.setMv(this);
+
+    @Override
+    public void onDestroy() {
+
     }
 
-    public void setActivity(Activity activity) {
-        this.mActivity = activity;
-    }
 }
 

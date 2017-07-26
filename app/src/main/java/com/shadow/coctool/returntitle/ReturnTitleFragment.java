@@ -28,6 +28,10 @@ public class ReturnTitleFragment extends Fragment {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         FragmentReturnTitleBinding binding = DataBindingUtil.bind(view);
+        if (mModelView == null) {
+            getActivity().finish();
+            return;
+        }
         mModelView.setActivity(getActivity());
         mModelView.setBinding(binding);
     }

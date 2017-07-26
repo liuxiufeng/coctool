@@ -11,7 +11,7 @@ import com.shadow.coctool.dice.DicesActivity;
 import com.shadow.coctool.fragmentactivity.FragmentActivity;
 import com.shadow.coctool.main.MainActivity;
 import com.shadow.coctool.main.adapters.IconMenuAdapter;
-import com.shadow.coctool.room.OptionFragment;
+import com.shadow.coctool.room.OptionCreator;
 
 import javax.inject.Inject;
 
@@ -47,7 +47,7 @@ public class MainModelView {
 
         Intent intent = new Intent(mContext, FragmentActivity.class);
         intent.putExtra(FragmentActivity.TITLE, "请选择");
-        intent.putExtra(FragmentActivity.CLASS_NAME, OptionFragment.class.getName());
+        intent.putExtra(FragmentActivity.CLASS_NAME, OptionCreator.class.getName());
         addMenu(0, intent, "跑团");
 
         mBinding.grid.setAdapter(mIconMenuAdapter);

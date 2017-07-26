@@ -13,16 +13,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/white"
-            android:text="@={mv.message}" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:orientation="horizontal">
 
             <EditText
@@ -36,6 +37,16 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{v -> mv.send()}"
                 android:text="输入" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{v -> mv.gotoRoll()}"
+                android:text="工具"
+                />
         </LinearLayout>
     </LinearLayout>
 

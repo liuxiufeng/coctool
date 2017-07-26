@@ -15,6 +15,7 @@ import javax.inject.Inject;
  */
 
 public class SocketComp {
+    private final String QUIT_MESSAGE = "bye";
 
     private Socket socket;
 
@@ -37,11 +38,14 @@ public class SocketComp {
             try {
                 socket = new Socket(ip, port);
                 socket.setTcpNoDelay(true);
-                buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                buf = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
                 out = socket.getOutputStream();
 
                 while (!Thread.interrupted() && socket.isConnected()) {
                     String string = buf.readLine();
+                    if (QUIT_MESSAGE.equals(string)) {
+                        break;
+                    }
                     if (string != null && !"".equals(string)) {
                         synchronized (readList) {
                             for (ReadObserver ob : readList) {
@@ -50,12 +54,16 @@ public class SocketComp {
                         }
                     }
                 }
-                buf.close();
-                socket.close();
             } catch (Exception e) {
                 e.printStackTrace();
-
             } finally {
+                try {
+                    buf.close();
+                    out.close();
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -64,29 +72,21 @@ public class SocketComp {
 
     public void send(String message) {
         new Thread(() -> {
-            if (out != null) {
-                try {
-                    String newLine = message + "\r\n";
-                    out.write(newLine.getBytes());
-                    out.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            try {
+                if (out == null) {
+                    Thread.sleep(1000);
                 }
+                String newLine = message + "\r\n";
+                out.write(newLine.getBytes());
+                out.flush();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }).start();
-
     }
 
     public void stop() {
-        try {
-            if (socket != null) {
-                buf.close();
-                out.close();
-                socket.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        send(QUIT_MESSAGE);
     }
 
     public void addReadObserver(ReadObserver observer) {

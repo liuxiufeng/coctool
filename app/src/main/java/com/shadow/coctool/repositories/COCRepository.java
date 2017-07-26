@@ -1,5 +1,6 @@
 package com.shadow.coctool.repositories;
 
+import com.shadow.coctool.retrofit.ClientModule;
 import com.shadow.coctool.retrofit.Clients.COCClient;
 
 import java.util.HashMap;
