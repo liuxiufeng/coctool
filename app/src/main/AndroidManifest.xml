@@ -14,7 +14,9 @@
         <activity
             android:name=".main.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,19 +24,33 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".avatar.AvatarListActivity"/>
+        <activity android:name=".avatar.AvatarListActivity"
+            android:screenOrientation="portrait"
+            />
 
-        <activity android:name=".avatar.AvatarActivity"/>
+        <activity android:name=".avatar.AvatarActivity"
+            android:screenOrientation="portrait"
+            />
 
-        <activity android:name=".avatar.SkillActivity"/>
+        <activity android:name=".avatar.SkillActivity"
+            android:screenOrientation="portrait"
+            />
 
-        <activity android:name=".avatar.AvatarEditActivity"/>
+        <activity android:name=".avatar.AvatarEditActivity"
+            android:screenOrientation="portrait"
+            />
 
-        <activity android:name=".avatar.AvatarViewActivity"/>
+        <activity android:name=".avatar.AvatarViewActivity"
+            android:screenOrientation="portrait"
+            />
 
-        <activity android:name=".dice.DicesActivity"/>
+        <activity android:name=".dice.DicesActivity"
+            android:screenOrientation="portrait"
+            />
 
-        <activity android:name=".fragmentactivity.FragmentActivity"/>
+        <activity android:name=".fragmentactivity.FragmentActivity"
+            android:screenOrientation="portrait"
+            />
 
     </application>
 

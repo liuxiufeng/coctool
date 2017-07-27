@@ -20,6 +20,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:text="@={mv.port}"
             android:hint="请输入端口号"
             />

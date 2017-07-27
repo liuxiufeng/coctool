@@ -170,7 +170,7 @@ public class Avatar extends BaseObservable implements Serializable {
 
         setCurrentHP(getHp());
         setCurrentMp(getMp());
-        setCurrentSan(getSan());
+        setCurrentSan(getPow() * 5);
         statusBaseSkillModifier();
     }
 
@@ -288,7 +288,7 @@ public class Avatar extends BaseObservable implements Serializable {
 
     @Bindable
     public int getSan() {
-        return mStatus.get(POWER) * 5 - mStatus.get("克苏鲁学");
+        return 99 - mStatus.get("克苏鲁学");
     }
 
     @Bindable

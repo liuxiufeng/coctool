@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.List;
 import java.util.Vector;
@@ -27,6 +28,8 @@ public class SocketComp {
 
     private OutputStream out;
 
+    private ErrorObserver errorObserver;
+
 
     @Inject
     public SocketComp() {
@@ -36,8 +39,10 @@ public class SocketComp {
     public void start(String ip, int port) {
         readThread = new Thread(() -> {
             try {
-                socket = new Socket(ip, port);
+                socket = new Socket();
+                socket.connect(new InetSocketAddress(ip, port), 1000);
                 socket.setTcpNoDelay(true);
+
                 buf = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
                 out = socket.getOutputStream();
 
@@ -56,6 +61,9 @@ public class SocketComp {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                if (errorObserver != null) {
+                    errorObserver.execute("房间没有创建");
+                }
             } finally {
                 try {
                     buf.close();
@@ -76,6 +84,9 @@ public class SocketComp {
                 if (out == null) {
                     Thread.sleep(1000);
                 }
+                if (!socket.isConnected()) {
+                    return;
+                }
                 String newLine = message + "\r\n";
                 out.write(newLine.getBytes());
                 out.flush();
@@ -91,6 +102,14 @@ public class SocketComp {
 
     public void addReadObserver(ReadObserver observer) {
         readList.add(observer);
+    }
+
+    public ErrorObserver getErrorObserver() {
+        return errorObserver;
+    }
+
+    public void setErrorObserver(ErrorObserver errorObserver) {
+        this.errorObserver = errorObserver;
     }
 
     public interface ReadObserver {

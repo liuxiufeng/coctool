@@ -7,6 +7,7 @@ import android.icu.text.DisplayContext;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.orhanobut.hawk.Hawk;
@@ -15,6 +16,7 @@ import com.shadow.coctool.R;
 import com.shadow.coctool.avatar.model.Avatar;
 import com.shadow.coctool.common.BaseModelView;
 import com.shadow.coctool.common.HawkKey;
+import com.shadow.coctool.common.PaddingDecoration;
 import com.shadow.coctool.databinding.FragmentRoomBinding;
 import com.shadow.coctool.dice.Dice;
 import com.shadow.coctool.dice.DicesActivity;
@@ -87,6 +89,14 @@ public class RoomModelView extends BaseModelView<FragmentRoomBinding> {
             }
         });
 
+        socketComp.setErrorObserver(str-> {
+            Handler mainHandler = new Handler(getActivity().getMainLooper());
+            mainHandler.post(() -> {
+                Toast.makeText(getActivity().getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+                mActivity.finish();
+            });
+        });
+
         socketComp.start(host, ip);
         initList();
 
@@ -96,6 +106,8 @@ public class RoomModelView extends BaseModelView<FragmentRoomBinding> {
     private void initList() {
         chatAdapter = new ChatAdapter(getActivity());
         getBinding().list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        PaddingDecoration decoration = new PaddingDecoration(mActivity);
+        mBinding.list.addItemDecoration(decoration);
         getBinding().list.setAdapter(chatAdapter);
     }
 

@@ -164,7 +164,7 @@
 
                             <TextView
                                 style="@style/avatar_status_text"
-                                android:text="@{Integer.toString(mv.avatar.hp)}" />
+                                android:text="@{Integer.toString(mv.avatar.currentHP)}" />
 
                             <TextView
                                 style="@style/avatar_status_text"
@@ -172,7 +172,7 @@
 
                             <TextView
                                 style="@style/avatar_status_text"
-                                android:text="@{Integer.toString(mv.avatar.mp)}" />
+                                android:text="@{Integer.toString(mv.avatar.currentMp)}" />
 
                             <TextView
                                 style="@style/avatar_status_text"
@@ -180,7 +180,7 @@
 
                             <TextView
                                 style="@style/avatar_status_text"
-                                android:text="@{Integer.toString(mv.avatar.san)}" />
+                                android:text="@{Integer.toString(mv.avatar.currentSan)}" />
                         </TableRow>
 
                         <TableRow>

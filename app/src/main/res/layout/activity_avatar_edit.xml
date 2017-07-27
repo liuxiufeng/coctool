@@ -183,7 +183,7 @@
 
                             <TextView
                                 style="@style/avatar_status_text"
-                                android:text="@{Integer.toString(mv.avatar.san)}" />
+                                android:text="@{Integer.toString(mv.avatar.currentSan)}" />
                         </TableRow>
 
                         <TableRow>

@@ -246,9 +246,6 @@ public class DicesModelView extends BaseObservable {
                             }
 
                             String skillId = mActivity.getString(R.string.skill_cthulhuMythos);
-                            if (dialogStatusChangeModelView.getId().equals(skillId)) {
-                                mAvatar.setCurrentSan(mAvatar.getSan());
-                            }
 
                             mAvatar.addModifier(MODIFIER, modifier);
 
@@ -290,7 +287,7 @@ public class DicesModelView extends BaseObservable {
     public void changePow() {
         dialogStatusChangeModelView.setId(Avatar.POWER);
         dialogStatusChangeModelView.setCurrentValue(mAvatar.getPow());
-        dialogStatusChangeModelView.setBaseValue(99);
+        dialogStatusChangeModelView.setBaseValue(18);
         dialogStatusChangeModelView.setModifier(0);
 
         changeDialog.show();
